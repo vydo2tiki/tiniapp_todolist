@@ -1,0 +1,8 @@
+{
+  "component": true, 
+  "usingComponents": {
+    "login-form": "components/login-form/index",
+    "register-form": "components/register-form/index"
+  },
+  "componentLifeCycleV2": "YES"
+}

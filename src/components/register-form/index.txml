@@ -1,0 +1,92 @@
+<view>
+  <view class="container">
+    <steps
+      activeIndex="{{activeIndex}}"
+      direction="horizontal"
+      items="{{items}}"
+      activeColor="#ff9933"
+      dotSize="30px"
+    />
+      <view tiki:if="{{activeIndex == 0}}" class="my-large step-item">
+        <view class="mb-large">
+          <text class="ml-large text-medium font-bold">Nhập Email đăng ký: </text>
+          <input    
+            class="auth-form-control mt-3x-small"
+            placeholder="Email"
+            type="email"
+
+            onInput="handleChangeInput"
+            data-name="email"
+          />
+        </view>
+
+        <auth-button onTapActionButton="handleNextStep" title="Tiếp tục" />
+      </view>
+
+      <view tiki:if="{{activeIndex == 1}}"  class="my-large step-item">
+        <view>
+          <text class="ml-large text-medium font-bold">Họ tên: </text>
+          <input    
+            class="auth-form-control"
+            placeholder="Họ tên"
+
+            onInput="handleChangeInput"
+            data-name="name"
+          />
+        </view>
+
+        <view>
+          <text class="ml-large text-medium font-bold">Tuổi: </text>
+          <input    
+            class="auth-form-control"
+            placeholder="Tuổi"
+            type="number"
+
+            onInput="handleChangeInput"
+            data-name="age"
+          />
+        </view>
+
+        <view>
+          <text class="ml-large text-medium font-bold">Mật khẩu: </text>
+          <input    
+            class="auth-form-control"
+            placeholder="Mật khẩu"
+            password="{{true}}"
+
+            onInput="handleChangeInput"
+            data-name="password"
+          />
+        </view>
+
+        <view class="mb-large">
+          <text class="ml-large text-medium font-bold">Nhập lại mật khẩu: </text>
+          <input    
+            class="auth-form-control"
+            placeholder="Nhập lại mật khẩu"
+            password="{{true}}"
+
+            onInput="handleChangeInput"
+            data-name="confirmPassword"
+          />
+        </view> 
+
+        <auth-button onTapActionButton="handleNextStep" class="mb-small" title="Tiếp tục" />
+        <auth-button onTapActionButton="handlePrevStep" title="Quay lại" />
+      </view>
+
+      <view tiki:if="{{activeIndex == 2 && isSuccess}}"  class="text-center mt-large step-item" >
+        <image class="logo logo-circle" src="/assets/images/success.png" />
+        <view class="mb-large font-bold text-medium">Đăng ký thành công! Chào xxx.</view>
+        <auth-button onTapActionButton="handleLogIn" title="Ấn để đăng nhập" />
+      </view> 
+
+      <view tiki:if="{{activeIndex == 2 && !isSuccess}}" class="text-center mt-large step-item" >
+        <image class="logo logo-circle" src="/assets/images/fail.svg" />
+        <view class="mb-large font-bold text-medium">Đăng ký thất bại! Tên đăng nhập đã tồn tại</view>
+        <auth-button onTapActionButton="handlePrevStep" title="Quay lại" />
+      </view>
+  </view>
+
+  
+</view>

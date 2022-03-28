@@ -1,0 +1,36 @@
+.auth-form-header {
+  padding: 20px 10px;
+  margin-bottom: 50px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.auth-form-header-title {
+  position: relative;
+  font-size: 18x;
+  font-weight: bold;
+  padding-bottom: 10px;
+
+  color: #ccc;
+  width: calc(50% - 10px);  
+  text-align: center;
+}
+
+.auth-form-header-title-active {
+  color: var(--color-core);
+}
+
+.auth-form-header-title::after {
+  content: " ";
+  height: 5px;
+  width: 100%;
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  background-color: currentColor;
+  border-radius: 10px;
+}

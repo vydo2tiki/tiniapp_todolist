@@ -1,0 +1,25 @@
+<view class="step-item">
+  <input    
+    class="auth-form-control"
+    placeholder="Email"
+    type="email"
+
+    onInput="handleChangeInput"
+    data-name="email"
+  />
+
+  <input    
+    class="auth-form-control"
+    placeholder="Mật khẩu"
+    password="{{true}}"
+
+    onInput="handleChangeInput"
+    data-name="password"
+  />
+
+  <view class="text-right mb-large">
+    <text class="link">Quên mật khẩu ?</text>
+  </view>
+
+  <auth-button onTapActionButton="handleLogin" title="Đăng nhập" />
+</view>

@@ -1,6 +1,12 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/auth/index",
+    "pages/home/index",
+    "pages/account/index",
+    "pages/search/index",
+    "pages/taskDetails/index",
+    "pages/taskAddEdit/index",
+    "pages/trash/index"
   ],
   "window": {
     "defaultTitle": "My App"

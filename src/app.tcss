@@ -1,3 +1,43 @@
+@import '@tiki.vn/tini-style/es/index.tcss';
+
+:root{
+  --color-core: #ff9933;
+  --logo-width: 150px;
+}
+
 .page {
   background-color: #f7f7f7;
+}
+
+.logo {
+  width: var(--logo-width);
+  height: var(--logo-width);
+}
+
+.logo-circle {
+  border-radius: calc(var(--logo-width)/2);
+}
+
+.auth-form-control {
+  height: auto;
+  border-radius: 20px;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+
+  font-size: 16px;
+  width: 100%;
+}
+
+.step-item {
+  animation: fadded ease-in-out 0.5s;
+}
+
+@keyframes fadded {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

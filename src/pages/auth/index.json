@@ -1,0 +1,7 @@
+{
+  "defaultTitle": "",
+  "usingComponents": {
+    "auth-form": "components/auth-form/index"
+  },
+  "transparentTitle": "always"
+}
