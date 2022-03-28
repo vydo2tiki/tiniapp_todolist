@@ -3,10 +3,12 @@
     "pages/home/index",
     "pages/auth/index",
     "pages/account/index",
-    "pages/search/index",
+    "pages/taskMain/index",
     "pages/taskDetails/index",
     "pages/taskAddEdit/index",
-    "pages/trash/index"
+    "pages/trash/index",
+    "pages/updateAccount/index",
+    "pages/notFound/index"
   ],
   "window": {
     "defaultTitle": "My App"
