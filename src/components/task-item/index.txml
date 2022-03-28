@@ -1,0 +1,44 @@
+<import-sjs from="../../utils/common.sjs" name="{isType}"></import-sjs>
+
+<view>
+  <template name="horizontal-completed">
+    <view class="task-item">
+      {{item.name}}
+    </view>
+  </template>
+
+  <template name="horizontal">
+    <view class="task-item">
+      {{item.name}}
+    </view>
+  </template>
+
+  <template name="list-completed">
+    <list-item padding upperSubtitle="Description">
+      <view>{{item.name}}</view>
+      <view slot="suffix">
+        <icon type="success_glyph" size="24" color="#009900" />
+      </view>
+    </list-item>
+  </template>
+
+  <template name="list">
+    <list-item padding upperSubtitle="Description">
+      <view>{{item.name}}</view>
+      <view slot="suffix">
+        <icon type="warning_glyph" size="24" color="#ffcc00" />
+      </view>
+    </list-item>
+  </template>
+
+  <template
+    is="{{isType(type, item.completed)}}"
+    data="{{item}}"
+  />
+</view>
+
+
+
+
+
+

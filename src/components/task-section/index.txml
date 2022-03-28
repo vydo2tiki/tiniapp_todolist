@@ -1,0 +1,22 @@
+<view class="task-section-container">
+  <template name="horizontal">
+    <view class="task-section-horizontal">
+      <block tiki:for={{task}}>
+        <task-item type={{type}} item="{{item}}" />
+      </block>
+    </view>
+  </template>
+ 
+  <template name="list">
+    <view class="task-section-list">
+      <block tiki:for={{task}}>
+        <task-item type={{type}} item="{{item}}" />
+      </block>
+    </view>
+  </template>
+
+  <template
+    is="{{type}}"
+    data="{{type, task}}"
+  />
+</view>

@@ -4,6 +4,6 @@
   </view>
 
   <view class="auth-form"> 
-    <auth-form activeLogin="{{true}}" />
+    <auth-form activeLogin="true" />
   </view>
 </view>

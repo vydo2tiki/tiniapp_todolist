@@ -1,0 +1,17 @@
+.task-section-horizontal {
+  display: flex;
+  width: max-content;
+  padding: 0 10px;
+}
+
+.task-section-container {
+  overflow-x: auto;
+}
+
+.task-section-container::-webkit-scrollbar {
+  display: none;
+}
+
+.task-section-list {
+
+}

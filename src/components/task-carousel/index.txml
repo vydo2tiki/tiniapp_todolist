@@ -1,0 +1,20 @@
+<view class="task-carousel">
+  <carousel 
+    indicator-dots="true"
+    onChange="onChange"
+  >
+    <block tiki:for="{{task}}">
+      <carousel-item>
+        <view class="task-carousel-container">
+          <view class="task-carousel-content">
+            <text>{{item.name}}</text>
+          </view>
+  
+          <view class="task-carousel-content">
+            <text>{{item.name}}</text>
+          </view>
+        </view> 
+      </carousel-item>
+    </block>
+  </carousel>
+</view>

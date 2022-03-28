@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "list-item": "@tiki.vn/tini-ui/es/list/list-item/index"
+  },
+  "componentLifeCycleV2": "YES"
+}

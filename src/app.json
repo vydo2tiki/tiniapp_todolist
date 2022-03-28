@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/auth/index",
     "pages/home/index",
+    "pages/auth/index",
     "pages/account/index",
     "pages/search/index",
     "pages/taskDetails/index",
@@ -10,5 +10,21 @@
   ],
   "window": {
     "defaultTitle": "My App"
+  },
+  "tabBar": {
+    "items": [
+      {
+        "name": "Trang chủ",
+        "pagePath": "pages/home/index",
+        "icon": "assets/icon/home.png",
+        "activeIcon": "assets/icon/home-active.png"
+      },
+      {
+        "name": "Tài khoản",
+        "pagePath": "pages/account/index",
+        "icon": "assets/icon/account.png",
+        "activeIcon": "assets/icon/account-active.png"
+      }
+    ]
   }
 }

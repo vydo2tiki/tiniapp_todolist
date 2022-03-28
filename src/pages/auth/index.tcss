@@ -24,15 +24,3 @@
   border-top-left-radius: 50px;
   border-top-right-radius: 50px;
 }
-
-.link {
-  color: #3399ff;
-}
-
-.link:hover {
-  text-decoration: underline;
-}
-
-.link:active {
-  color: #9999ff;
-}

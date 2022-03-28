@@ -2,7 +2,14 @@
 
 :root{
   --color-core: #ff9933;
+  --color-white: #f8f9fa;
   --logo-width: 150px;
+  --box-width: 50px;
+  --box-item-width: 100px;
+}
+
+.text-primary {
+  color: var(--color-core);
 }
 
 .page {
@@ -30,6 +37,18 @@
 
 .step-item {
   animation: fadded ease-in-out 0.5s;
+}
+
+.link {
+  color: #3399ff;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.link:active {
+  color: #9999ff;
 }
 
 @keyframes fadded {

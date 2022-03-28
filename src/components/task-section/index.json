@@ -1,0 +1,7 @@
+{
+  "component": true, 
+  "usingComponents": {
+    "task-item": "components/task-item/index"
+  },
+  "componentLifeCycleV2": "YES"
+}

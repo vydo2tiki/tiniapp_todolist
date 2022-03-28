@@ -1,1 +1,10 @@
-{}
+{
+  "defaultTitle": "Trang chủ",
+  "usingComponents": {
+    "add-button": "components/add-button/index",
+    "section-title": "components/section-title/index",
+    "task-carousel": "components/task-carousel/index",
+    "task-section": "components/task-section/index"
+  },
+  "backgroundColor": "#f8f9fa"
+}

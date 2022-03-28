@@ -1,1 +1,21 @@
-<view>This is home page</view>
+<view>
+  <task-carousel task="{{task}}" />
+
+  <view>
+    <section-title title="Đã hoàn thành" />
+    <task-section type="horizontal" task="{{task}}" />
+  </view>
+  
+  <view>
+    <section-title title="Chưa hoàn thành" />
+    <task-section type="horizontal" task="{{task}}" />
+  </view>
+
+  <view>
+    <section-title title="Task của bạn" />
+    <task-section type="list" task="{{task}}" />
+  </view>
+ 
+
+  <add-button />
+</view>
