@@ -1,7 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-    "list-item": "@tiki.vn/tini-ui/es/list/list-item/index"
+    "list-item": "@tiki.vn/tini-ui/es/list/list-item/index",
+    "badge": "@tiki.vn/tini-ui/es/badge/index"
   },
   "componentLifeCycleV2": "YES"
 }

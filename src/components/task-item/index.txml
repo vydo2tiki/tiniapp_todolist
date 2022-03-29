@@ -3,19 +3,29 @@
 <view>
   <template name="horizontal">
     <view onTap="_onNavigateTo" class="task-item-horizontal">
-      {{item.name}}
+      <text class="p-small" >{{item.description}}</text>
+      <text class="badge">
+      </text>
+    </view>
+  </template>
+
+  <template name="horizontal-completed">
+    <view onTap="_onNavigateTo" class="task-item-horizontal task-item-horizontal-completed">
+      <text class="p-small" >{{item.description}}</text>
+      <text class="badge badge-completed">
+      </text>
     </view>
   </template>
 
   <template name="vertical">
     <view onTap="_onNavigateTo" class="task-item-vertical">
-      {{item.name}}
+      {{item.description}}
     </view>
   </template>
 
   <template name="list-completed">
-    <list-item onClick="_onNavigateTo" padding upperSubtitle="Description">
-      <view>{{item.name}}</view>
+    <list-item onClick="_onNavigateTo" padding upperSubtitle="Completed">
+      <view>{{item.description}}</view>
       <view slot="suffix">
         <icon type="success_glyph" size="24" color="#009900" />
       </view>
@@ -23,8 +33,8 @@
   </template>
 
   <template name="list">
-    <list-item onClick="_onNavigateTo" padding upperSubtitle="Description">
-      <view>{{item.name}}</view>
+    <list-item onClick="_onNavigateTo" padding upperSubtitle="In process">
+      <view>{{item.description}}</view>
       <view slot="suffix">
         <icon type="warning_glyph" size="24" color="#ffcc00" />
       </view>

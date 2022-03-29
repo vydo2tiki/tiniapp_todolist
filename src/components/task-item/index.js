@@ -6,7 +6,6 @@ Component({
     type: ''
   },
   didMount() {
-    console.log('task', this.props.type);
   },
   methods: {
     _onNavigateTo(e) {

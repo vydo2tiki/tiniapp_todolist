@@ -12,7 +12,8 @@ Component({
     name: '',
     age: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    onLogin: () => {}
   },
   props: { 
 

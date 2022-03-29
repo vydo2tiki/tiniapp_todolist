@@ -2,7 +2,7 @@ import {
   navigateToUpdateAccount,
   navigateToTrash,
   navigateToTask,
-  navigateToNotFount
+  navigateToNotFound
 } from '../../utils/navigate';
 
 Page({
@@ -26,7 +26,7 @@ Page({
       { 
         icon: "../../assets/icon/setting.png",
         title: "Cài đặt",
-        func: navigateToNotFount,
+        func: navigateToNotFound,
       }
     ]
   },

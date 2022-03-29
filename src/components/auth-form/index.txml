@@ -2,14 +2,14 @@
   <view class="auth-form-header">
     <view 
       onTap="handleOnChange"  
-      data-mode="true"
+      data-mode="{{true}}"
       class="auth-form-header-title {{activeLogin ? 'auth-form-header-title-active' : ''}}"
     >
       <text>ĐĂNG NHẬP</text>
     </view> 
     <view 
       onTap="handleOnChange" 
-      data-mode="false"
+      data-mode="{{false}}"
       class="auth-form-header-title {{!activeLogin ? 'auth-form-header-title-active' : ''}}"
     >
       <text>ĐĂNG KÝ</text>
@@ -17,7 +17,7 @@
   </view>
 
   <view tiki:if="{{activeLogin}}">
-    <login-form />
+    <login-form onLogin="onLogin" />
   </view>
   
   <view tiki:else>

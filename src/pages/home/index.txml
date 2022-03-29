@@ -1,14 +1,22 @@
 <view>
-  <task-carousel task="{{task}}" />
+  <task-carousel task="{{banner}}" />
 
   <view>
-    <section-title title="Đã hoàn thành" />
-    <task-section type="horizontal" task="{{task}}" />
+    <section-title 
+      data-status="true"
+      onNavigate="onNavigate" 
+      title="Đã hoàn thành" 
+    />
+    <task-section type="horizontal" task="{{completed}}" />
   </view>
   
   <view>
-    <section-title title="Chưa hoàn thành" />
-    <task-section type="horizontal" task="{{task}}" />
+    <section-title 
+      data-status="false"
+      onNavigate="onNavigate" 
+      title="Chưa hoàn thành" 
+    />
+    <task-section type="horizontal" task="{{inprocess}}" />
   </view>
 
   <view>

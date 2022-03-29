@@ -1,13 +1,14 @@
 Component({
   data: {
     email: '',
-    password: ''
+    password: '',
   },
   props: { 
+    onLogin: () => {}
   },
   methods: {
     handleLogin() {
-      console.log(this.data.email, this.data.password);
+      this.props.onLogin(this.data.email, this.data.password);
     },
     handleChangeInput(e) {
       const key = e.target.dataset.name;

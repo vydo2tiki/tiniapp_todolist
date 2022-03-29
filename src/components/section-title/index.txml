@@ -1,7 +1,7 @@
 <view class="mx-medium flex justify-between items-center mt-medium mb-small">
   <text class="font-bold text-medium text-primary">{{title}}</text> 
-  <text class="flex justify-between items-center link">
+  <view onTap="_onNavigate" class="flex justify-between items-center link">
     Xem thêm
     <icon color="#9999ff" type="arrow_right" />
-  </text>
+  </view>
 </view>

@@ -1,3 +1,5 @@
+import {navigateToTaskDetail} from '../../utils/navigate';
+
 Component({
   props: {
     task: []
@@ -5,6 +7,9 @@ Component({
   methods: {
     onChange(e) {
       console.log('onChange: ', e);
+    },
+    onNavigate(e) {
+      navigateToTaskDetail(e.target.dataset.id);
     }
   }
 });

@@ -1,27 +1,69 @@
-import {navigateToTask} from '../../utils/navigate';
+import {
+  navigateToTask,
+  navigateToAuth,
+} from '../../utils/navigate';
+
+import {
+  getAllTaskAPI,
+  getTaskByPaginationAPI,
+  getTaskbyCompletedAPI
+} from '../../services/index';
 
 Page({
   data: {
-    task: [
-      {name: "A", completed: true},
-      {name: "B", completed: false},
-      {name: "C", completed: true},      
-      {name: "D", completed: false},      
-      {name: "E", completed: true}      
-    ]
+    isLoading: true,
+    task: [],
+    completed: [],
+    inprocess: [],
+    banner: [],
   },
-  onLoad(query) {
-   
+  async onLoad(query) {
+    
+    this.setData({ isLoading: true });
+
+    try {
+      const [
+        task,
+        banner,
+        completed,
+        inprocess
+      ] =  await Promise.all([
+        getTaskByPaginationAPI("token", 10, 0),
+        getTaskByPaginationAPI("token", 6, 0),
+        getTaskbyCompletedAPI("token", true),
+        getTaskbyCompletedAPI("token", false)
+      ]);
+
+      const group = banner.reduce((acc, item, index) => {
+        if (index % 2 == 0) {
+          acc.push(banner.slice(index, index + 2));
+        }
+        return acc;
+      }, []);
+      
+      this.setData({
+        task,
+        banner: group,
+        completed: completed.slice(0, 10),
+        inprocess: inprocess.slice(0, 10)
+      })
+    } catch {
+      this.setData({
+        isLoading: false,
+      });
+    }
   },
   onReady() {
   },
   onShow() {
+    console.log("show");
   },
   onHide() {
   },
   onUnload() {
+    console.log(this.data);
   },
-  onCustomIconEvent(e) {
-    navigateToTask();
+  onNavigate(e) {
+    navigateToTask(e.target.dataset);
   },
 });
