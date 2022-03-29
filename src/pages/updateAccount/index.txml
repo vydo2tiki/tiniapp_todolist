@@ -1,1 +1,26 @@
-<view>This is account page</view>
+<view class="text-medium">
+  <list-item padding arrow>
+    <view>Email</view>
+    <view slot="suffix">
+      email@gmail.com
+    </view>
+  </list-item>
+
+  <list-item padding arrow>
+    <view>Name</view>
+    <view slot="suffix">
+      Nguyễn Văn A
+    </view>
+  </list-item>
+
+  <list-item padding arrow>
+    <view>Tuổi</view>
+    <view slot="suffix">
+      20
+    </view>
+  </list-item>
+
+  <button class="delete-account">
+    Xoá tài khoản
+  </button>
+</view>

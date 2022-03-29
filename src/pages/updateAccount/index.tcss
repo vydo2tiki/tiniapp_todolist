@@ -1,1 +1,8 @@
-view { }
+.delete-account, 
+.delete-account:hover,
+.delete-account:active {
+  width: 100%;
+  margin-top: 20px;
+  background-color: #e60000;
+  border: 1px solid #cc0000;
+}
