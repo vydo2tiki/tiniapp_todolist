@@ -1,1 +1,26 @@
-<view>This is details page</view>
+<view class="task-detail ">
+  <view class="task-detail-contaienr">
+    <view class="task-detail-header">
+      <image src="../../assets/images/completed-bg.jpeg" />
+    </view>
+
+    
+    <view class="flex flex-col p-medium">
+      <text class="text-large font-bold mb-small">
+        Name
+      </text>
+      <text>
+        Status
+      </text> 
+      <text>Ngày tạo: dd/mm/yy</text>
+      <text>Ngày cập nhật: dd/mm/yy</text>
+    </view>
+
+    <view class="task-detail-action">
+      <!-- <button class="button-delete" shape="pill">Xoá task</button> -->
+      <button class="button-update" shape="pill">Hoàn thành</button>
+    </view>
+  
+  </view>
+</view>
+

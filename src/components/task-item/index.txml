@@ -2,19 +2,19 @@
 
 <view>
   <template name="horizontal">
-    <view class="task-item-horizontal">
+    <view onTap="_onNavigateTo" class="task-item-horizontal">
       {{item.name}}
     </view>
   </template>
 
   <template name="vertical">
-    <view class="task-item-vertical">
+    <view onTap="_onNavigateTo" class="task-item-vertical">
       {{item.name}}
     </view>
   </template>
 
   <template name="list-completed">
-    <list-item padding upperSubtitle="Description">
+    <list-item onClick="_onNavigateTo" padding upperSubtitle="Description">
       <view>{{item.name}}</view>
       <view slot="suffix">
         <icon type="success_glyph" size="24" color="#009900" />
@@ -23,7 +23,7 @@
   </template>
 
   <template name="list">
-    <list-item padding upperSubtitle="Description">
+    <list-item onClick="_onNavigateTo" padding upperSubtitle="Description">
       <view>{{item.name}}</view>
       <view slot="suffix">
         <icon type="warning_glyph" size="24" color="#ffcc00" />

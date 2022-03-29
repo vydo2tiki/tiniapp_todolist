@@ -15,3 +15,7 @@ export const navigateToTask = (search, status, sort = 'desc') => {
 export const navigateToNotFount = () => {
   my.navigateTo({ url: 'pages/notFound/index' });
 };
+
+export const navigateToTaskDetail = (task_id) => {
+  my.navigateTo({ url: 'pages/taskDetail/index' });
+};
