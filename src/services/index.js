@@ -9,16 +9,16 @@ import {
 
 export const postRegisterUserAPI = async ({email, password}) => {
   await fakeRequest(1000);
-  const success = Math.random() % 2 == 1;
+  const success = Math.floor(Math.random() * 2);
   if (success) return { token: 'tokenfake'};
-  else return { message: 'Email đã tồn tại' };
+  throw new Error("Exists Users"); 
 };
 
 export const postLoginAPI = async ({email, password}) => {
   await fakeRequest(1000);
-  const success = Math.random() % 2 == 1;
+  const success = Math.floor(Math.random() * 2);
   if (success) return { token: 'tokenfake'};
-  else return { message: 'Tài khoản hoặc mật khẩu không chính xác' };
+  throw new Error("Isvalid User");
 };
 
 export const postLogoutAPI = async (token) => {

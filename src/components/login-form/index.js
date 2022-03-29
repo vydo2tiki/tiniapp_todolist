@@ -1,10 +1,11 @@
 Component({
   data: {
     email: '',
-    password: '',
+    password: '',   
   },
   props: { 
-    onLogin: () => {}
+    onLogin: () => {},
+    messega: ''
   },
   methods: {
     handleLogin() {

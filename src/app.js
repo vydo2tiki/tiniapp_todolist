@@ -4,7 +4,7 @@ App({
   authEvent: new EventEmitter(),
   taskEvent: new EventEmitter(),
   auth: {
-    isLogin: true,
+    isLogin: false,
     token: 'tokenfake'
   },
   task: [],

@@ -21,5 +21,9 @@
     <text class="link">Quên mật khẩu ?</text>
   </view>
 
+  <view class="text-center mb-medium">
+    <text style="color: red" >{{messega}}</text>
+  </view>
+  
   <auth-button onTapActionButton="handleLogin" title="Đăng nhập" />
 </view>

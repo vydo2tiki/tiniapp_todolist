@@ -20,6 +20,10 @@
           />
         </view>
 
+        <view class="text-center mb-medium">
+          <text style="color: red" >{{messega}}</text>
+        </view>
+
         <auth-button onTapActionButton="handleNextStep" title="Tiếp tục" />
       </view>
 
@@ -71,19 +75,25 @@
           />
         </view> 
 
-        <auth-button onTapActionButton="handleNextStep" class="mb-small" title="Tiếp tục" />
+        <view class="text-center mb-medium">
+          <text style="color: red" >{{messega}}</text>
+        </view>
+
+        <auth-button onTapActionButton="handleRegister" class="mb-small" title="Đăng ký" />
         <auth-button onTapActionButton="handlePrevStep" title="Quay lại" />
       </view>
 
       <view tiki:if="{{activeIndex == 2 && isSuccess}}"  class="text-center mt-large step-item" >
         <image class="logo logo-circle" src="/assets/images/success.png" />
-        <view class="mb-large font-bold text-medium">Đăng ký thành công! Chào xxx.</view>
+        <view class="mb-large font-bold text-medium">Đăng ký thành công! Chào {{name}}.</view>
         <auth-button onTapActionButton="handleLogIn" title="Ấn để đăng nhập" />
       </view> 
 
       <view tiki:if="{{activeIndex == 2 && !isSuccess}}" class="text-center mt-large step-item" >
         <image class="logo logo-circle" src="/assets/images/fail.svg" />
-        <view class="mb-large font-bold text-medium">Đăng ký thất bại! Tên đăng nhập đã tồn tại</view>
+        <view class="mb-large font-bold text-medium">
+          Đăng ký thất bại! Email đã được sử dụng.
+        </view>
         <auth-button onTapActionButton="handlePrevStep" title="Quay lại" />
       </view>
   </view>

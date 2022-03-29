@@ -17,10 +17,10 @@
   </view>
 
   <view tiki:if="{{activeLogin}}">
-    <login-form onLogin="onLogin" />
+    <login-form messega="{{messega}}" onLogin="onLogin" />
   </view>
   
   <view tiki:else>
-    <register-form />
+    <register-form isSuccess="{{isSuccess}}" onRegister="onRegister" />
   </view>
 </view>
