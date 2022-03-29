@@ -1,1 +1,27 @@
-view { }
+.task-header {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
+  margin-top: 10px;
+}
+
+.task-sort {
+  width: 40%;
+}
+
+.button-completed,
+.button-primary:hover,
+.button-primary:active {
+  border: 1px solid var(--color-core);
+  background-color: var(--color-core);
+  color: #fff;
+}
+
+.button-primary,
+.button-completed:hover,
+.button-completed:active {
+  border: 1px solid var(--color-core);
+  color: var(--color-core);
+}

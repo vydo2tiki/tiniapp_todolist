@@ -15,6 +15,14 @@
     </view>
   </template>
 
+  <template name="vertical">
+    <view class="task-section-vertical">
+      <block tiki:for={{task}}>
+        <task-item type={{type}} item="{{item}}" />
+      </block>
+    </view>
+  </template>
+
   <template
     is="{{type}}"
     data="{{type, task}}"

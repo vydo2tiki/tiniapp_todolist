@@ -1,3 +1,5 @@
+import {navigateToTask} from '../../utils/navigate';
+
 Page({
   data: {
     task: [
@@ -18,5 +20,8 @@ Page({
   onHide() {
   },
   onUnload() {
-  }
+  },
+  onCustomIconEvent(e) {
+    navigateToTask();
+  },
 });

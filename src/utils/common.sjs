@@ -1,4 +1,4 @@
 export const isType = (type, completed) => {
-  console.log(type, completed);
+  if (type !== 'list') return type;
   return `${type}${completed ? '-completed' : ''}`;
 }

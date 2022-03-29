@@ -4,7 +4,7 @@
     "pages/auth/index",
     "pages/account/index",
     "pages/taskMain/index",
-    "pages/taskDetails/index",
+    "pages/taskDetail/index",
     "pages/taskAddEdit/index",
     "pages/trash/index",
     "pages/updateAccount/index",

@@ -1,7 +1,7 @@
 {
   "component": true, 
   "usingComponents": {
-    "auth-button": "components/auth-button/index",
+    "elip-button": "components/elip-button/index",
     "button": "@tiki.vn/tini-ui/es/tu-button/index",
     "steps": "@tiki.vn/tini-ui/es/steps/index"
   },

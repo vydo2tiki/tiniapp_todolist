@@ -1,1 +1,10 @@
-{}
+{
+  "defaultTitle": "Task",
+  "usingComponents": {
+    "add-button": "components/add-button/index",
+    "task-section": "components/task-section/index",
+    "dropdown": "@tiki.vn/tini-ui/es/dropdown/index",
+    "button": "@tiki.vn/tini-ui/es/tu-button/index"
+  },
+  "backgroundColor": "#f8f9fa"
+}

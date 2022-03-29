@@ -1,14 +1,14 @@
 <import-sjs from="../../utils/common.sjs" name="{isType}"></import-sjs>
 
 <view>
-  <template name="horizontal-completed">
-    <view class="task-item">
+  <template name="horizontal">
+    <view class="task-item-horizontal">
       {{item.name}}
     </view>
   </template>
 
-  <template name="horizontal">
-    <view class="task-item">
+  <template name="vertical">
+    <view class="task-item-vertical">
       {{item.name}}
     </view>
   </template>
