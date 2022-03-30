@@ -12,13 +12,47 @@
       </dropdown>
     </view>
 
-    <button size="medium" type="outline" shape="pill">Tăng dần</button>
-    <button size="medium" type="outline" shape="pill">Giảm dần</button>
+    <button 
+      onTap="handleSort"
+      data-sortmode="asc"
+      size="medium" 
+      type="{{sortmode === 'asc' ? 'soild' : 'outline'}}" 
+      shape="pill"
+    >
+      Tăng dần
+    </button>
+
+    <button 
+      onTap="handleSort"
+      data-sortmode="desc"
+      size="medium" 
+      type="{{sortmode === 'desc' ? 'soild' : 'outline'}}" 
+      shape="pill"
+    >
+      Giảm dần
+    </button>
   </view>
 
   <view class="task-header mb-large">
-    <button class="button-completed" size="medium" type="outline" shape="pill">Đã hoàn thành</button>
-    <button class="button-incomplete" size="medium" shape="pill">Chưa hoàn thành</button>
+    <button 
+      onTap="handleStatus"
+      data-completed="{{true}}"
+      class="{{completed === true ? 'button-completed-on' : 'button-completed-off'}}" 
+      size="medium" 
+      shape="pill"
+    >
+      Đã hoàn thành
+    </button>
+
+    <button 
+      onTap="handleStatus"
+      data-completed="{{false}}"
+      class="{{completed === false ? 'button-completed-on' : 'button-completed-off'}}" 
+      size="medium" 
+      shape="pill"
+    >
+      Chưa hoàn thành
+    </button>
   </view>
   
   <view class="mx-small">

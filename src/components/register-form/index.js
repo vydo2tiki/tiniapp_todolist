@@ -37,10 +37,12 @@ Component({
     },
     handleNextStep() {
       const currentIntex = this.data.activeIndex;
-      this.setData({ activeIndex: currentIntex + 1 });
       if (!this.data.email) {
         this.setData({ messega: 'Điền đầy đủ thông tin' });
-      } else this.setData({ messega: '' });
+      } else {
+        this.setData({ messega: '' });
+        this.setData({ activeIndex: currentIntex + 1 });
+      }
     },
     handlePrevStep() {
       const currentIntex = this.data.activeIndex;
@@ -48,7 +50,7 @@ Component({
       this.setData({ messega: '' });
     },
     handleLogIn() {
-      console.log("Log in");
+      my.reLaunch({ url: 'pages/home/index' });
     },
     handleChangeInput(e) {
       const key = e.target.dataset.name;

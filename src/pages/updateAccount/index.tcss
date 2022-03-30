@@ -1,6 +1,8 @@
 .delete-account, 
 .delete-account:hover,
 .delete-account:active {
+  position: absolute;
+  bottom: 0;
   width: 100%;
   margin-top: 20px;
   background-color: #e60000;

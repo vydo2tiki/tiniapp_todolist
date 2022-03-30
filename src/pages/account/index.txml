@@ -1,7 +1,15 @@
 <view>
   <view class="account-avatar">
-    <image class="account-avatar-img" src="../../assets/images/user-avatar.png" />
+    <image tiki:if="{{avatar}}" class="account-avatar-img" src="{{avatar}}" />
+    <view tiki:if="{{!avatar}}" class="account-avatar-img">
+    </view>
     <view class="text-right pr-large font-bold text-2x-large">{{user.name}}</view>
+    <button 
+      onTap="onChooseImage"
+      class="button-avatar"
+    >
+      <image src="../../assets/icon/edit.png" />
+    </button>
   </view>
 
   
@@ -17,7 +25,7 @@
   </view>
 
   <view class="account-logout">
-    <button class="logout-button">
+    <button onTap="onLogout" class="logout-button">
       Đăng xuất
     </button>
   </view>

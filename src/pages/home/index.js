@@ -64,7 +64,6 @@ Page({
   onHide() {
   },
   onUnload() {
-    console.log(this.data);
   },
   onNavigate() {
     navigateToTask();

@@ -52,3 +52,37 @@
   border-radius: 50px;
   box-shadow: 0px 0px 3px #333;
 }
+
+.button-avatar {
+  position: absolute;
+  left: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border-radius: 20px;
+
+  background-color: #fff;
+  border: 1px solid var(--color-core);
+}
+
+.button-avatar:hover {
+  background-color: #fff;
+  border: 1px solid var(--color-core);
+  box-shadow: 0px 0px 3px var(--color-core);
+}
+
+.button-avatar:active {
+  background-color: var(--color-core);
+  border: 1px solid var(--color-core);
+  box-shadow: 0px 0px 3px #333;
+}
+
+.button-avatar > image {
+  width: 20px;
+  height: 20px
+}

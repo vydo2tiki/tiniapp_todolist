@@ -4,20 +4,27 @@ import {
   getUrlTaskAPI,
   getTaskByPaginationAPI
 } from '../../services/index';
+
  import {CompareKey} from '../../utils/common';
+
+ import {
+  getStorage
+ } from "../../utils/storage"
 
 Page({
   data: {
     selected: SORTTYPE[0],
     task: [],
     page: 1,
-    sortmode: 'desc',
+    sortmode: null,
+    completed: null,
     sorttype: SORTTYPE
   },
   async onLoad(options) {
+    const token = await getStorage('token');
     const parse = query.parse(options);
     const { sortmode, selected, page } = this.data;
-    let task;
+    let task = [];
     if (options) {
       task = await getUrlTaskAPI("token", options, page);
     } else {
@@ -29,14 +36,6 @@ Page({
       this.setData({ page: 0 });
     }
 
-    task.sort(function (a, b) {
-      const key = selected.name;
-      if (sortmode === 'desc') {
-        return (a[key] > b[key]);
-      }
-      return a[key] <= b[key];
-    });
-   
     this.setData({ task });
   },
   onReady() {
@@ -58,5 +57,13 @@ Page({
     const { page } = this.data;
     this.setData({ page: page + 1 });
     this.onLoad();
+  },
+  handleSort(e) {
+    const sortmode = this.data.sortmode === e.target.dataset.sortmode ? null : e.target.dataset.sortmode
+    this.setData({ sortmode });
+  },
+  handleStatus(e) {
+    const completed = this.data.completed === e.target.dataset.completed ? null : e.target.dataset.completed
+    this.setData({ completed });
   }
 });

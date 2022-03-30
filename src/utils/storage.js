@@ -22,3 +22,17 @@ export const setStorage = (key, data) => {
     });
   });
 };
+
+export const removeStorage = (key) => {
+  return new Promise((resolve, reject) => {
+    my.removeStorage({
+      key,
+      success: (res) => {
+        resolve(res)
+      },
+      fail: (fail) => {
+        reject(fail);
+      }
+    });
+  });
+};

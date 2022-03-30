@@ -11,17 +11,17 @@
   width: 40%;
 }
 
-.button-completed,
-.button-incomplete:hover,
-.button-incomplete:active {
+.button-completed-on,
+.button-completed-on:hover,
+.button-completed-on:active {
   border: 1px solid var(--color-core);
   background-color: var(--color-core);
   color: #fff;
 }
 
-.button-incomplete,
-.button-completed:hover,
-.button-completed:active {
+.button-completed-off,
+.button-completed-off:hover,
+.button-completed-off:active {
   border: 1px solid var(--color-core);
   color: var(--color-core);
   background-color: #fff;

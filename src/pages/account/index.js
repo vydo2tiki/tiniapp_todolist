@@ -6,11 +6,15 @@ import {
 } from '../../utils/navigate';
 
 import {
-  getLoggedUserAPI
+  getLoggedUserAPI,
+  getImageAPI,
+  postUploadImageAPI,
+  postLogoutAPI
 } from '../../services/index';
 
 import {
-  getStorage
+  getStorage,
+  removeStorage
 } from '../../utils/storage';
 
 Page({
@@ -38,14 +42,26 @@ Page({
       }
     ],
     user: null,
-    isLoading: true
+    isLoading: true,
+    avatar: null,
   },
   async onLoad() {
     this.setData({ isLoading: true });
     try {
       const token = await getStorage('token');
-      const auth = await getLoggedUserAPI(token);
-      this.setData({ user: auth.user });
+      const [
+        auth,
+        image
+      ] =  await Promise.all([
+        getLoggedUserAPI(token),
+        getImageAPI(token)
+      ]);
+
+      this.setData({ 
+        user: auth.user, 
+        avatar: image
+      });
+
     } catch (err) {
       const app = getApp();
       app.loadUser();
@@ -64,5 +80,35 @@ Page({
     const { index } = e.target.dataset;
     this.data.pages[index].func();
   },
-
+  onChooseImage() {
+    my.chooseImage({
+      success: async (res) => {
+        const token = await getStorage('token');
+        const img = res.filePaths[0];
+        const data = await postUploadImageAPI(token, img);
+        if (data.success) {
+          try {
+            const image = await getImageAPI(token);
+          
+            my.alert({ title: 'Cập nhật ảnh thành công' });
+            this.setData({ avatar: image.url });
+          } catch (error) {
+            my.alert({ title: 'Cập nhật ảnh thất bại' });
+          }
+         
+        } else {
+          my.alert({ title: 'Cập nhật ảnh thất bại' });
+        }
+      },
+      fail: (e) => {
+        my.alert({ title: 'Cập nhật ảnh thất bại' });
+      }
+    });
+  },
+  async onLogout() {
+    const token = await getStorage('token');
+    await postLogoutAPI(token);
+    await removeStorage('token');
+    my.reLaunch({ url: 'pages/auth/index' });
+  }
 });

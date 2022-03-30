@@ -24,7 +24,8 @@ export const postLoginAPI = async ({email, password}) => {
 };
 
 export const postLogoutAPI = async (token) => {
-  await fakeRequest(1000);
+  await fakeRequest(3000);
+  return { success: true };
 };
 
 export const postUpdateUserProfileAPI = async (token, data) => {
@@ -47,20 +48,34 @@ export const getLoggedUserAPI = async (token) => {
   throw new Error("Token Error");
 };
 
-export const postUploadImageAPI = (data) => {
-  
+export const postUploadImageAPI = async (token, data) => {
+  await fakeRequest(3000);
+  const success = Math.floor(Math.random() * 3);
+  if (success) return { success: true };
+  throw new Error("Server Error");
 };
 
-export const getImageAPI = (data) => {
-  
+export const getImageAPI = async (data) => {
+  await fakeRequest(3000);
+  const success = Math.floor(Math.random() * 2);
+  const url = [
+    "../../assets/images/user-avatar.png",
+    "../../assets/images/avatar.png"
+  ];
+  if (success) return { url: url[success] };
+  throw new Error("Server Error");
 };
 
-export const deleteImageAPI = (data) => {
-  
+export const deleteImageAPI = async (data) => {
+  await fakeRequest(3000);
+  const success = Math.floor(Math.random() * 3);
+  if (success) return { success: true };
+  throw new Error("Server Error");
 };
 
-export const deleteUserAPI = (data) => {
-  
+export const deleteUserAPI = async (data) => {
+  await fakeRequest(3000);
+  return { success: true };
 };
 
 //Task API ----------------------------------

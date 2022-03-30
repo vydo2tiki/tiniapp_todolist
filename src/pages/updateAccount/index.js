@@ -1,10 +1,12 @@
 import {
   getLoggedUserAPI,
-  postUpdateUserProfileAPI
+  postUpdateUserProfileAPI,
+  deleteUserAPI
 } from '../../services/index';
 
 import {
-  getStorage
+  getStorage,
+  removeStorage
 } from '../../utils/storage';
 
 Page({
@@ -33,6 +35,33 @@ Page({
   onHide() {
   },
   onUnload() {
+  },
+  handleDeleteAccount() {
+    my.confirm({
+      title: 'Bạn muốn xoá tài khoản',
+      confirmButtonText: 'Xoá',
+      cancelButtonText: 'Huỷ',
+      success: async (result) => {
+        const token = await getStorage('token');
+        if (result.confirm) {
+          try {
+            await deleteUserAPI(token);
+            await removeStorage('token');
+            my.alert({ 
+              title: 'Xoá tài khoản thành công',
+              success: () => {
+                my.reLaunch({ url: 'pages/auth/index' });
+              }
+            });
+          } catch (err) {
+            my.alert({ title: 'Xoá tài khoản thất bại' });
+          }
+        }
+      },
+      fail: (e) => {
+        my.alert({ title: 'Xoá tài khoản thất bại' });
+      }
+    });
   },
   handleEdit(e) {
     const { is } = e.target.dataset;
