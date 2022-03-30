@@ -30,18 +30,18 @@
   justify-content: center;
 }
 
-.button-delete, 
-.button-delete:hover,
-.button-delete:active {
+.button-inprocess, 
+.button-inprocess:hover,
+.button-inprocess:active {
   background-image: linear-gradient(#ffb31a, #ffaa00, #ffb31a);
   border: none;
   min-width: 80%;
   color: #000;
 }
 
-.button-update, 
-.button-update:hover,
-.button-update:active {
+.button-completed, 
+.button-completed:hover,
+.button-completed:active {
   background-image: linear-gradient(#2eb82e, #29a329, #2eb82e);
   border: none;
   min-width: 80%;

@@ -79,8 +79,9 @@ export const getUrlTaskAPI = async (token, url, page) => {
   return task;
 };
 
-export const getTaskByIdAPI = (id) => {
-  const tasks = mockDataTask();
+export const getTaskByIdAPI = async (token, id) => {
+  const tasks = await mockDataTask();
+  console.log(id);
   const task = tasks.find(x => x._id == id);
   return task;
 };
@@ -97,15 +98,14 @@ export const getTaskbyCompletedAPI= async (token, completed) => {
   return task;
 };
 
-export const deleteTaskByIdAPI = (id) => {
-  const tasks = mockDataTask();
+export const deleteTaskByIdAPI = async (token, id) => {
+  const tasks = await mockDataTask();
   const task = tasks.filter(x => x._id != id);
-  mockUpdateTask(task);
+  await mockUpdateTask(task);
 };
 
-export const updateTaskByIdAPI = ({id, completed}) => {
-  const tasks = mockDataTask();
+export const updateTaskByIdAPI = async (token, id, completed) => {
+  const tasks = await mockDataTask();
   const index = tasks.findIndex(x => x._id == id);
   tasks[index].completed = completed;
-  mockUpdateTask(task);
 };

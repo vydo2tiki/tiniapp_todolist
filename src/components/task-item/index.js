@@ -9,7 +9,7 @@ Component({
   },
   methods: {
     _onNavigateTo(e) {
-      navigateToTaskDetail();
+      navigateToTaskDetail(this.props.item._id);
     }
   }
 });

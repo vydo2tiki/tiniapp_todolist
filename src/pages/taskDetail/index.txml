@@ -1,24 +1,39 @@
 <view class="task-detail ">
   <view class="task-detail-contaienr">
     <view class="task-detail-header">
-      <image src="../../assets/images/completed-bg.jpeg" />
+      <image tiki:if="{{completed}}"  src="../../assets/images/completed-bg.jpeg" />
+      <image tiki:if="{{!completed}}"  src="../../assets/images/inprocess-bg.jpeg" />
     </view>
 
     
     <view class="flex flex-col p-medium">
       <text class="text-large font-bold mb-small">
-        Name
+        {{description}}
       </text>
       <text>
-        Status
+        {{status}}
       </text> 
-      <text>Ngày tạo: dd/mm/yy</text>
-      <text>Ngày cập nhật: dd/mm/yy</text>
+      <text>Ngày tạo: {{createdAt}}</text>
+      <text>Ngày cập nhật: {{updatedAt}}</text>
     </view>
 
     <view class="task-detail-action">
-      <!-- <button class="button-delete" shape="pill">Xoá task</button> -->
-      <button class="button-update" shape="pill">Hoàn thành</button>
+      <button
+        onTap="handleInprocess"
+        tiki:if="{{completed}}"  
+        class="button-inprocess" 
+        shape="pill"
+      >
+        Đánh dấu chưa hoàn thành
+      </button>
+      <button 
+        onTap="handleCompleted"
+        tiki:if="{{!completed}}" 
+        class="button-completed" 
+        shape="pill"
+      >
+        Đánh dấu hoàn thành
+      </button>
     </view>
   
   </view>

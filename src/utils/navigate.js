@@ -17,7 +17,7 @@ export const navigateToNotFound = () => {
 };
 
 export const navigateToTaskDetail = (task_id) => {
-  my.navigateTo({ url: 'pages/taskDetail/index' });
+  my.navigateTo({ url: `pages/taskDetail/index?id=${task_id}` });
 };
 
 export const navigateToAuth = () => {
