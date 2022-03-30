@@ -1,7 +1,7 @@
 <view>
   <view class="account-avatar">
     <image class="account-avatar-img" src="../../assets/images/user-avatar.png" />
-    <view class="text-right pr-large font-bold text-2x-large">Nguyen Van A</view>
+    <view class="text-right pr-large font-bold text-2x-large">{{user.name}}</view>
   </view>
 
   

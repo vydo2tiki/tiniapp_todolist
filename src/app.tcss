@@ -8,6 +8,10 @@
   --box-item-width: 100px;
 }
 
+.w-100 {
+  width: 100%;
+}
+
 .text-primary {
   color: var(--color-core);
 }

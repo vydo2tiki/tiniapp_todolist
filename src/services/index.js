@@ -27,9 +27,24 @@ export const postLogoutAPI = async (token) => {
   await fakeRequest(1000);
 };
 
+export const postUpdateUserProfileAPI = async (token, data) => {
+  await fakeRequest(1000);
+  const success = Math.floor(Math.random() * 4);
+  if (success) return { messega : 'Cập nhật thành công'};
+  else return { messega : 'Cập nhật thất bại'};
+};
+
 export const getLoggedUserAPI = async (token) => {
   await fakeRequest(1000);
-  if (token === 'tokenfake') return { name: "Nguyễn Văn A"}
+  const success = Math.floor(Math.random() * 4);
+  const User = {
+    name: "Nguyễn Văn A",
+    email: "nva@gmail.com",
+    age: "20",
+    password: "12345678"
+  };
+  if (success) return { user: User };
+  throw new Error("Token Error");
 };
 
 export const postUploadImageAPI = (data) => {

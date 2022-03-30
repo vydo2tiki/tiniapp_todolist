@@ -5,6 +5,14 @@ import {
   navigateToNotFound
 } from '../../utils/navigate';
 
+import {
+  getLoggedUserAPI
+} from '../../services/index';
+
+import {
+  getStorage
+} from '../../utils/storage';
+
 Page({
   data: {
     pages: [
@@ -28,13 +36,25 @@ Page({
         title: "Cài đặt",
         func: navigateToNotFound,
       }
-    ]
+    ],
+    user: null,
+    isLoading: true
   },
-  onLoad(query) {
+  async onLoad() {
+    this.setData({ isLoading: true });
+    try {
+      const token = await getStorage('token');
+      const auth = await getLoggedUserAPI(token);
+      this.setData({ user: auth.user });
+    } catch (err) {
+      const app = getApp();
+      app.loadUser();
+    }
   },
   onReady() {
   },
   onShow() {
+    this.onLoad();
   },
   onHide() {
   },

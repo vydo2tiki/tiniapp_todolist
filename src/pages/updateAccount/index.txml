@@ -1,26 +1,93 @@
-<view class="text-medium">
-  <list-item padding arrow>
+<view tiki:if="{{!isEdit}}" class="text-medium">
+  <list-item padding>
     <view>Email</view>
     <view slot="suffix">
-      email@gmail.com
+      {{user.email}}
     </view>
   </list-item>
 
-  <list-item padding arrow>
+  <list-item 
+    onClick="handleEdit" 
+    data-is="{{false}}"
+    padding 
+    arrow
+  >
     <view>Name</view>
     <view slot="suffix">
-      Nguyễn Văn A
+      {{user.name}}
     </view>
   </list-item>
 
-  <list-item padding arrow>
+  <list-item 
+    onClick="handleEdit" 
+    data-is="{{false}}"
+    padding 
+    arrow
+  >
     <view>Tuổi</view>
     <view slot="suffix">
-      20
+      {{user.age}}
     </view>
   </list-item>
 
-  <button class="delete-account">
+  <button onTap="handleEdit" data-is="{{true}}" class="w-100">
+    Đổi mật khẩu
+  </button>
+
+  <button onTap="handleDeleteAccount" class="delete-account">
     Xoá tài khoản
   </button>
 </view>
+
+<view tiki:else >
+  <textfield
+    tiki:if="{{!editPassword}}"
+    placeholder="Nhập tên"
+    value={{editValue.name}}
+    onInput="handleChange"
+    data-key="name"
+  />
+
+  <textfield
+    tiki:if="{{!editPassword}}"
+    placeholder="Nhập tuổi"
+    value={{editValue.age}}
+    onInput="handleChange"
+    data-key="age"
+    type="number"
+  />
+
+  <textfield
+    tiki:if="{{editPassword}}"
+    placeholder="Nhập mật khẩu mới"
+    onInput="handleChange"
+    data-key="newPass"
+    password
+  />
+
+  <textfield
+    tiki:if="{{editPassword}}"
+    placeholder="Nhập lại mật khẩu mới"
+    onInput="handleChange"
+    data-key="confirmPass"
+    password
+  />
+
+  <textfield
+    placeholder="Nhập mật khẩu"
+    onInput="handleChange"
+    data-key="password"
+    password
+  />
+
+  <view class="text-center mt-medium">
+    <text style="color: red" >{{messega}}</text>
+  </view>
+
+  <button onTap="handleUpdateAccount" class="w-100 mt-large" >
+    Cập nhật thông tin
+  </button>
+  <list-item onClick="handleEdit" padding arrow>
+    <view>Quay lại</view>
+  </list-item>
+</view> 

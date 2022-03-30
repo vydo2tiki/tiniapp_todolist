@@ -1,26 +1,38 @@
 import EventEmitter from './utils/event';
+import {
+  getLoggedUserAPI
+} from './services/index';
+
+import {
+  getStorage
+} from './utils/storage';
 
 App({
   authEvent: new EventEmitter(),
-  taskEvent: new EventEmitter(),
   auth: {
-    isLogin: true,
-    token: 'tokenfake'
+    isLogin: false,
+    name: "",
+    email: "",
+    age: "",
+    password: "",
   },
   task: [],
-  onLaunch(options) {
-    console.log("App run");
+  async loadUser() {
+    this.auth.isLogin = false;
+    const token = await getStorage('token');
+    console.log(token);
+    try {
+      if (token) {
+        const auth = await getLoggedUserAPI(token);
+        this.auth = { isLogin: true ,...auth.user};
+      } else {
+        my.reLaunch({ url: 'pages/auth/index' });
+      }
+    } catch (err) {
+      my.reLaunch({ url: 'pages/auth/index' });
+    }
   },
   onShow(options) {
-    const isLogin = this.isAuthorization();
-    if (!isLogin) {
-      my.reLaunch({ url: 'pages/auth/index' });
-    } 
-  },
-  async fetchData() {
-
-  },
-  isAuthorization() {
-    return this.auth.isLogin;
+    this.loadUser();
   }
 });

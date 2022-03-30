@@ -3,6 +3,10 @@ import {
   postRegisterUserAPI
 } from '../../services/index';
 
+import {
+  setStorage
+} from '../../utils/storage';
+
 Component({
   props: {
     activeLogin: true,
@@ -14,13 +18,15 @@ Component({
       this.setData({ activeLogin: e.target.dataset.mode });
     },
     async onLogin(email, password) {
+      const app = getApp();
       if (email == '' || password == '') {
         this.setData({ messega: "Điền thông tin đăng nhập" });
       } else {
         try {
           const res = await postLoginAPI({ email, password });
           this.setData({ messega: "" });
-          console.log(res);
+          const data =  await setStorage("token", res.token);
+          my.reLaunch({ url: 'pages/home/index' });
         } catch (err) {
           this.setData({ messega: "Email hoặc mật khẩu không chính xác" });
         }
@@ -32,7 +38,7 @@ Component({
       } else {
         try {
           const res = await postRegisterUserAPI({ email, password });
-          console.log(res);
+          const data =  await setStorage("token", res.token);
           this.setData({ isSuccess: true });
         } catch (err) {
           this.setData({ isSuccess: false });

@@ -9,6 +9,10 @@ import {
   getTaskbyCompletedAPI
 } from '../../services/index';
 
+import {
+  getStorage
+} from '../../utils/storage'
+
 Page({
   data: {
     isLoading: true,
@@ -18,9 +22,8 @@ Page({
     banner: [],
   },
   async onLoad(query) {
-    
     this.setData({ isLoading: true });
-
+    const token = await getStorage('token');
     try {
       const [
         task,
@@ -28,10 +31,10 @@ Page({
         completed,
         inprocess
       ] =  await Promise.all([
-        getTaskByPaginationAPI("token", 10, 0),
-        getTaskByPaginationAPI("token", 6, 0),
-        getTaskbyCompletedAPI("token", true),
-        getTaskbyCompletedAPI("token", false)
+        getTaskByPaginationAPI(token, 10, 0),
+        getTaskByPaginationAPI(token, 6, 0),
+        getTaskbyCompletedAPI(token, true),
+        getTaskbyCompletedAPI(token, false)
       ]);
 
       const group = banner.reduce((acc, item, index) => {
@@ -56,7 +59,7 @@ Page({
   onReady() {
   },
   onShow() {
-    console.log("show");
+    this.onLoad();  
   },
   onHide() {
   },
