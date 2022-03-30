@@ -17,7 +17,6 @@ export const mockUpdateTask = async (data) => {
   await fakeRequest(5000);
 }
 
-export const mockAddTask = (data) => {
-  // let rawdata = JSON.stringify(data);
-  // fs.appendFileSync('./mock/task.json', rawdata);
+export const mockAddTask = async (data) => {
+  await fakeRequest(5000);
 }

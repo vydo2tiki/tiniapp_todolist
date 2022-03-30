@@ -50,11 +50,11 @@ export const deleteUserAPI = (data) => {
 
 //Task API ----------------------------------
 
-export const postAddTaskAPI = (token, data) => {
-  const tasks = mockDataTask();
-  const len = tasks.lenght;
+export const postAddTaskAPI = async (token, data) => {
+  const tasks = await mockDataTask();
+  const len = tasks.length;
   const id = tasks[len-1]._id + 1;
-  mockAddTask({ _id: id, ...data});
+  mockAddTask({ _id: id, description: data });
 };
 
 export const getAllTaskAPI = async (token) => {
