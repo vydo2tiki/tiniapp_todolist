@@ -1,16 +1,21 @@
+export const CoverUrl = (data) => {
+  const keys = Object.keys(data);
+  const params = keys.map(x => `${x}=${data[x]}`);
+  const paramurl = params.join('&');
+  return paramurl;
+}
+
 export const CompareKey = (a, b, key, sortmode) => {
   if (key === 'description') {
-    console.log(a[key], b[key]);
-    if (sortmode === 'desc') {
-      return a[key] > b[key];
-    }
-    return a[key] <= b[key];
+    if (sortmode === 'desc')
+    if (a[key] > b[key]) return sortmode === 'desc' ? 1 : -1;
+    if (a[key] < b[key]) return sortmode === 'desc' ? -1 : 1;
+    if (a[key] === b[key]) return 0;    
   } else {
     const key_a = new Date(a[key]);
     const key_b = new Date(b[key]);
-    if (sortmode === 'desc') {
-      return key_a > key_b;
-    }
-    return key_a <= key_b;
+    if (key_a > key_b) return sortmode === 'asc' ? 1 : -1;
+    if (key_a < key_b) return sortmode === 'asc' ? -1 : 1;
+    if (key_a === key_b) return 0; 
   }
 }

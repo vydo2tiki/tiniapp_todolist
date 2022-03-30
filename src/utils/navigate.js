@@ -8,8 +8,8 @@ export const navigateToTrash = () => {
   my.navigateTo({ url: 'pages/trash/index' });
 };
 
-export const navigateToTask = (completed = '', limit = 10, skip = 0) => {
-  my.navigateTo({ url: `pages/taskMain/index?completed=${completed}&limit=${limit}&skip=${skip}` });
+export const navigateToTask = () => {
+  my.navigateTo({ url: `pages/taskMain/index` });
 };
 
 export const navigateToNotFound = () => {

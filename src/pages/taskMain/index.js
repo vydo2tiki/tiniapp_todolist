@@ -5,7 +5,10 @@ import {
   getTaskByPaginationAPI
 } from '../../services/index';
 
- import {CompareKey} from '../../utils/common';
+ import {
+  CoverUrl,
+  CompareKey
+} from '../../utils/common';
 
  import {
   getStorage
@@ -16,24 +19,27 @@ Page({
     selected: SORTTYPE[0],
     task: [],
     page: 1,
+    end: false,
     sortmode: null,
     completed: null,
     sorttype: SORTTYPE
   },
   async onLoad(options) {
     const token = await getStorage('token');
-    const parse = query.parse(options);
-    const { sortmode, selected, page } = this.data;
-    let task = [];
-    if (options) {
-      task = await getUrlTaskAPI("token", options, page);
-    } else {
-      const limit = 10 * page == 0 ? 10 : 10*page; 
-      task = await getTaskByPaginationAPI("token", limit, 0);
-    }
+    const { completed, page, sortmode, selected } = this.data;
+    const url = CoverUrl({completed, limit: 10 * page, skip: 0});
+  
+    const task = await getUrlTaskAPI(token, url);
 
-    if (task.length <= parseInt(parse.limit) * page) {
-      this.setData({ page: 0 });
+    if (task.length < 10 * page) {
+      this.setData({ end: true });
+    } else this.setData({ end: false });
+
+    if (sortmode !== null) {
+      const key = selected.name;
+      task.sort(function(a, b) {
+        return CompareKey(a, b, key, sortmode);
+      });
     }
 
     this.setData({ task });
@@ -53,17 +59,23 @@ Page({
     this.setData({ selected });
     this.onLoad();
   },
-  handleViewMore() {
+  handleView(e) {
     const { page } = this.data;
-    this.setData({ page: page + 1 });
+    if (this.data.end) {
+      this.setData({ page: 1 });
+    } else {
+      this.setData({ page: page + 1 });
+    }
     this.onLoad();
   },
   handleSort(e) {
     const sortmode = this.data.sortmode === e.target.dataset.sortmode ? null : e.target.dataset.sortmode
     this.setData({ sortmode });
+    this.onLoad();
   },
   handleStatus(e) {
     const completed = this.data.completed === e.target.dataset.completed ? null : e.target.dataset.completed
     this.setData({ completed });
+    this.onLoad();
   }
 });

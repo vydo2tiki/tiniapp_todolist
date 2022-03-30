@@ -9,7 +9,8 @@ import {
   getLoggedUserAPI,
   getImageAPI,
   postUploadImageAPI,
-  postLogoutAPI
+  postLogoutAPI,
+  deleteImageAPI
 } from '../../services/index';
 
 import {
@@ -44,6 +45,7 @@ Page({
     user: null,
     isLoading: true,
     avatar: null,
+    show: false
   },
   async onLoad() {
     this.setData({ isLoading: true });
@@ -80,6 +82,23 @@ Page({
     const { index } = e.target.dataset;
     this.data.pages[index].func();
   },
+  async onDeleteImage() {
+    try {
+      const token = await getStorage('token');
+      const mess = await deleteImageAPI(token);
+      if (mess.success) {
+        this.setData({ avatar: null });
+        this.onHide();
+      } else throw new Error("Server Error");
+    } catch (err) {
+      my.alert({
+        title: "Xoá thất bại",
+        success: () => {
+          this.onHide();
+        }
+      });
+    }
+  },
   onChooseImage() {
     my.chooseImage({
       success: async (res) => {
@@ -110,5 +129,11 @@ Page({
     await postLogoutAPI(token);
     await removeStorage('token');
     my.reLaunch({ url: 'pages/auth/index' });
+  },
+  onShow() {
+    this.setData({ show: true });
+  },
+  onHide() {
+    this.setData({ show: false });
   }
 });

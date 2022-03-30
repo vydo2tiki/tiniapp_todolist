@@ -91,19 +91,19 @@ export const getAllTaskAPI = async (token) => {
   return await mockDataTask();
 };
 
-export const getUrlTaskAPI = async (token, url, page) => {
+export const getUrlTaskAPI = async (token, url) => {
   const parse = query.parse(url);
   
   let task;
-  if (parse.completed !== '') {
+  if (parse.completed !== 'null') {
     const completed = (parse.completed === "true");
     task = await getTaskbyCompletedAPI(token, completed);
   } else task = await getAllTaskAPI(token);
 
-  if (parse.limit !== '') {
+  if (parse.limit !== 'null') {
     const skip = parseInt(parse.skip);
     const limit = parseInt(parse.limit);
-    task.slice(skip, skip + limit * page);
+    task = task.slice(skip, skip + limit);
   }
 
   return task;

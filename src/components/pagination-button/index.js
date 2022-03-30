@@ -1,9 +1,10 @@
 Component({
   props: { 
-    title: "",
     className: "",
+    type: "",
     onTapActionButton: () => {}
   },
+
   methods: {
     _onTapActionButton() {
       this.props.onTapActionButton();

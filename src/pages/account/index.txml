@@ -5,13 +5,24 @@
     </view>
     <view class="text-right pr-large font-bold text-2x-large">{{user.name}}</view>
     <button 
-      onTap="onChooseImage"
+      onTap="onShow"
       class="button-avatar"
     >
       <image src="../../assets/icon/edit.png" />
     </button>
   </view>
 
+  <view class="{{!show ? 'bottom-sheet-hide' : 'bottom-sheet '}}" >
+    <list-item onClick="onChooseImage" padding>
+      <view>Đổi ảnh đại diện</view>
+    </list-item>
+    <list-item onClick="onDeleteImage" padding>
+      <view>Xoá đại diện</view>
+    </list-item>
+    <list-item onClick="onHide" padding>
+      <view>Huỷ</view>
+    </list-item>
+  </view>
   
   <view class="account-setting">
     <block tiki:for="{{pages}}">
