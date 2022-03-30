@@ -14,7 +14,6 @@ Component({
     messega: ''
   },
   props: {
-    messega: '',
     onRegister: () => {},
     isSuccess: false,
   },

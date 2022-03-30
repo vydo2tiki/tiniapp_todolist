@@ -63,7 +63,7 @@ Page({
   onUnload() {
     console.log(this.data);
   },
-  onNavigate(e) {
-    navigateToTask(e.target.dataset);
+  onNavigate() {
+    navigateToTask();
   },
 });

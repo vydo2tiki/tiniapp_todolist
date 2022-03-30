@@ -5,6 +5,8 @@ import {
   mockAddTask
 } from './mockdata';
 
+import query from 'query-string';
+
 // User API -----------------------------
 
 export const postRegisterUserAPI = async ({email, password}) => {
@@ -55,8 +57,26 @@ export const postAddTaskAPI = (token, data) => {
   mockAddTask({ _id: id, ...data});
 };
 
-export const getAllTaskAPI = (token) => {
-  return mockDataTask();
+export const getAllTaskAPI = async (token) => {
+  return await mockDataTask();
+};
+
+export const getUrlTaskAPI = async (token, url, page) => {
+  const parse = query.parse(url);
+  
+  let task;
+  if (parse.completed !== '') {
+    const completed = (parse.completed === "true");
+    task = await getTaskbyCompletedAPI(token, completed);
+  } else task = await getAllTaskAPI(token);
+
+  if (parse.limit !== '') {
+    const skip = parseInt(parse.skip);
+    const limit = parseInt(parse.limit);
+    task.slice(skip, skip + limit * page);
+  }
+
+  return task;
 };
 
 export const getTaskByIdAPI = (id) => {

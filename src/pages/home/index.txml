@@ -3,7 +3,6 @@
 
   <view>
     <section-title 
-      data-status="true"
       onNavigate="onNavigate" 
       title="Đã hoàn thành" 
     />
@@ -12,7 +11,6 @@
   
   <view>
     <section-title 
-      data-status="false"
       onNavigate="onNavigate" 
       title="Chưa hoàn thành" 
     />
@@ -20,7 +18,10 @@
   </view>
 
   <view>
-    <section-title title="Task của bạn" />
+    <section-title 
+      onNavigate="onNavigate" 
+      title="Task của bạn" 
+    />
     <task-section type="list" task="{{task}}" />
   </view>
  

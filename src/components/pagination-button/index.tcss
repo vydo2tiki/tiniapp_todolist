@@ -1,0 +1,22 @@
+.pagination-button,
+.pagination-button:hover,
+.pagination-button:active {
+  padding: 10px 20px;
+  border: 1px solid var(--color-core);
+  border-radius: 20px;
+  
+  background-color: #fff;
+  color: var(--color-core);
+  width: 80%;
+
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+}
+
+.pagination-button:hover,
+.pagination-button:active {
+  box-shadow: 0px 0px 5px var(--color-core);
+}
+
+

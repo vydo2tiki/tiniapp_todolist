@@ -4,12 +4,12 @@ App({
   authEvent: new EventEmitter(),
   taskEvent: new EventEmitter(),
   auth: {
-    isLogin: false,
+    isLogin: true,
     token: 'tokenfake'
   },
   task: [],
   onLaunch(options) {
-  
+    console.log("App run");
   },
   onShow(options) {
     const isLogin = this.isAuthorization();

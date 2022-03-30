@@ -1,0 +1,4 @@
+<button onTap="_onTapActionButton"  class="pagination-button">
+  Xem thêm
+  <icon color="#ff9933" type="arrow_right"/>
+</button>

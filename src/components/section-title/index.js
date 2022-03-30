@@ -1,6 +1,7 @@
 Component({
   props: { 
     title: '',
+    data: null,
     onNavigate: () => {}
   },
 
@@ -9,9 +10,8 @@ Component({
   didUnmount() {},
 
   methods: {
-    _onNavigate(e) {
-      console.log("alo");
-      this.props.onNavigate(e);
+    _onNavigate() {
+      this.props.onNavigate();
     }
   }
 });

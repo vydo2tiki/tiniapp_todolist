@@ -19,12 +19,25 @@
 
   <template name="vertical">
     <view onTap="_onNavigateTo" class="task-item-vertical">
-      {{item.description}}
+      <text class="font-bold text-medium">
+        {{item.description}}
+      </text>
+      <text class="text-primary">
+        {{item.completed ? 'Đã hoàn thành' : 'Đang tiến hành'}}
+      </text>
+
+      <text class="text-mute">
+        {{item.createdAt}}
+      </text>
+
+      <text class="text-mute">
+        {{item.updatedAt}}
+      </text>
     </view>
   </template>
 
   <template name="list-completed">
-    <list-item onClick="_onNavigateTo" padding upperSubtitle="Completed">
+    <list-item onClick="_onNavigateTo" padding upperSubtitle="Đã hoàn thành">
       <view>{{item.description}}</view>
       <view slot="suffix">
         <icon type="success_glyph" size="24" color="#009900" />
@@ -33,7 +46,7 @@
   </template>
 
   <template name="list">
-    <list-item onClick="_onNavigateTo" padding upperSubtitle="In process">
+    <list-item onClick="_onNavigateTo" padding upperSubtitle="Đang tiến hành">
       <view>{{item.description}}</view>
       <view slot="suffix">
         <icon type="warning_glyph" size="24" color="#ffcc00" />

@@ -25,5 +25,8 @@
     <task-section type="vertical" task="{{task}}" />
   </view>
   
+  <view tiki:if="{{page}}">
+    <pagination-button onTapActionButton="handleViewMore"/>
+  </view>
   <add-button  />
 </view>
