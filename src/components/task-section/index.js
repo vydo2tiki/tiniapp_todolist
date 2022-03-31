@@ -1,8 +1,7 @@
 Component({
   props: {
     task: [],
-    type: ''
-   
+    type: '',
   },
   didMount() {
   },

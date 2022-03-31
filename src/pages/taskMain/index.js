@@ -2,17 +2,16 @@ import {SORTTYPE} from '../../utils/constants';
 import query from 'query-string';
 import {
   getUrlTaskAPI,
-  getTaskByPaginationAPI
+  havingToken
 } from '../../services/index';
 
- import {
-  CoverUrl,
+import {
   CompareKey
 } from '../../utils/common';
 
- import {
-  getStorage
- } from "../../utils/storage"
+import {
+  handleError
+} from "../../utils/error";
 
 Page({
   data: {
@@ -25,24 +24,39 @@ Page({
     sorttype: SORTTYPE
   },
   async onLoad(options) {
-    const token = await getStorage('token');
     const { completed, page, sortmode, selected } = this.data;
-    const url = CoverUrl({completed, limit: 10 * page, skip: 0});
+    const parse = {
+      completed,
+      ...query.parse(options)
+    };
+    
+    const url = query.stringify({ 
+      completed: parse.completed, 
+      limit: 10 * page,
+      skip: 0
+    })
+
+    try {
+      const task = await getUrlTaskAPI(url);
   
-    const task = await getUrlTaskAPI(token, url);
-
-    if (task.length < 10 * page) {
-      this.setData({ end: true });
-    } else this.setData({ end: false });
-
-    if (sortmode !== null) {
-      const key = selected.name;
-      task.sort(function(a, b) {
-        return CompareKey(a, b, key, sortmode);
+      if (task.length < 10 * page) {
+        this.setData({ end: true });
+      } else this.setData({ end: false });
+  
+      if (sortmode !== null) {
+        const key = selected.name;
+        task.sort(function(a, b) {
+          return CompareKey(a, b, key, sortmode);
+        });
+      } 
+  
+      this.setData({ 
+        task,
+        completed: options ? parse.completed === "true" : completed
       });
+    } catch (err) {
+      handleError(err.messega);
     }
-
-    this.setData({ task });
   },
   onReady() {
 

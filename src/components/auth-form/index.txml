@@ -17,7 +17,7 @@
   </view>
 
   <view tiki:if="{{activeLogin}}">
-    <login-form messega="{{messega}}" onLogin="onLogin" />
+    <login-form message="{{message}}" onLogin="onLogin" />
   </view>
   
   <view tiki:else>

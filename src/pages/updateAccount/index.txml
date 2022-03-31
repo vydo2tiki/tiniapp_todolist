@@ -81,7 +81,7 @@
   />
 
   <view class="text-center mt-medium">
-    <text style="color: red" >{{messega}}</text>
+    <text style="color: red" >{{message}}</text>
   </view>
 
   <button onTap="handleUpdateAccount" class="w-100 mt-large" >

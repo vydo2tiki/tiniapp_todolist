@@ -10,13 +10,18 @@ import {
   getImageAPI,
   postUploadImageAPI,
   postLogoutAPI,
-  deleteImageAPI
+  deleteImageAPI,
+  havingToken
 } from '../../services/index';
 
 import {
   getStorage,
   removeStorage
 } from '../../utils/storage';
+
+import {
+  handleError
+} from '../../utils/error';
 
 Page({
   data: {
@@ -43,20 +48,17 @@ Page({
       }
     ],
     user: null,
-    isLoading: true,
     avatar: null,
-    show: false
+    isShow: false
   },
-  async onLoad() {
-    this.setData({ isLoading: true });
+  async loadData() {
     try {
-      const token = await getStorage('token');
       const [
         auth,
         image
       ] =  await Promise.all([
-        getLoggedUserAPI(token),
-        getImageAPI(token)
+        getLoggedUserAPI(await havingToken()),
+        getImageAPI(await havingToken())
       ]);
 
       this.setData({ 
@@ -65,14 +67,13 @@ Page({
       });
 
     } catch (err) {
-      const app = getApp();
-      app.loadUser();
+      handleError(err.messega)
     }
   },
   onReady() {
   },
   onShow() {
-    this.onLoad();
+    this.loadData();
   },
   onHide() {
   },
@@ -84,13 +85,13 @@ Page({
   },
   async onDeleteImage() {
     try {
-      const token = await getStorage('token');
-      const mess = await deleteImageAPI(token);
+      const mess = await deleteImageAPI(await havingToken());
       if (mess.success) {
         this.setData({ avatar: null });
         this.onHide();
       } else throw new Error("Server Error");
     } catch (err) {
+      handleError(err.messega);
       my.alert({
         title: "Xoá thất bại",
         success: () => {
@@ -102,21 +103,25 @@ Page({
   onChooseImage() {
     my.chooseImage({
       success: async (res) => {
-        const token = await getStorage('token');
         const img = res.filePaths[0];
-        const data = await postUploadImageAPI(token, img);
-        if (data.success) {
-          try {
-            const image = await getImageAPI(token);
-          
-            my.alert({ title: 'Cập nhật ảnh thành công' });
-            this.setData({ avatar: image.url });
-          } catch (error) {
+        try {
+          const data = await postUploadImageAPI(await havingToken({ token, img }));
+          if (data.success) {
+            try {
+              const image = await getImageAPI(await havingToken());
+            
+              my.alert({ title: 'Cập nhật ảnh thành công' });
+              this.setData({ avatar: image.url });
+            } catch (error) {
+              handleError(err.messega);
+              my.alert({ title: 'Cập nhật ảnh thất bại' });
+            }
+           
+          } else {
             my.alert({ title: 'Cập nhật ảnh thất bại' });
-          }
-         
-        } else {
-          my.alert({ title: 'Cập nhật ảnh thất bại' });
+          } 
+        } catch (err) {
+          handleError(err.messega);
         }
       },
       fail: (e) => {
@@ -125,15 +130,18 @@ Page({
     });
   },
   async onLogout() {
-    const token = await getStorage('token');
-    await postLogoutAPI(token);
-    await removeStorage('token');
-    my.reLaunch({ url: 'pages/auth/index' });
+    try {
+      await postLogoutAPI(await havingToken());
+      await removeStorage('token');
+      my.reLaunch({ url: 'pages/auth/index' });
+    } catch (err) {
+      handleError(err.messega);
+    }
+  }, 
+  onSheetShow() {
+    this.setData({ isShow: true });
   },
-  onShow() {
-    this.setData({ show: true });
-  },
-  onHide() {
-    this.setData({ show: false });
+  onSheetHide() {
+    this.setData({ isShow: false });
   }
 });

@@ -100,7 +100,3 @@
   justify-content: flex-end;
   flex-direction: column;
 }
-
-.bottom-sheet-hide {
-  display: none;
-}

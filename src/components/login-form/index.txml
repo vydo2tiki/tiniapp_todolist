@@ -22,7 +22,7 @@
   </view>
 
   <view class="text-center mb-medium">
-    <text style="color: red" >{{messega}}</text>
+    <text style="color: red" >{{message}}</text>
   </view>
   
   <auth-button onTapActionButton="handleLogin" title="Đăng nhập" />

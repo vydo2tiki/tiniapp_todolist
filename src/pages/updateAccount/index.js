@@ -1,8 +1,13 @@
 import {
   getLoggedUserAPI,
   postUpdateUserProfileAPI,
-  deleteUserAPI
+  deleteUserAPI,
+  havingToken
 } from '../../services/index';
+
+import {
+  handleError
+} from '../../utils/error';
 
 import {
   getStorage,
@@ -15,22 +20,20 @@ Page({
     editPassword: false,
     editValue: {},
     user: null,
-    messega: ''
+    message: ''
   },
-  async onLoad() {
-    this.setData({ isLoading: true });
+  async loadData() {
     try {
-      const token = await getStorage('token');
-      const auth = await getLoggedUserAPI(token);
+      const auth = await getLoggedUserAPI(await havingToken());
       this.setData({ user: auth.user });
     } catch (err) {
-      const app = getApp();
-      app.loadUser();
+      handleError(err.messega);
     }
   },
   onReady() {
   },
   onShow() {
+    this.loadData();
   },
   onHide() {
   },
@@ -42,10 +45,9 @@ Page({
       confirmButtonText: 'Xoá',
       cancelButtonText: 'Huỷ',
       success: async (result) => {
-        const token = await getStorage('token');
         if (result.confirm) {
           try {
-            await deleteUserAPI(token);
+            await deleteUserAPI(await havingToken());
             await removeStorage('token');
             my.alert({ 
               title: 'Xoá tài khoản thành công',
@@ -54,6 +56,7 @@ Page({
               }
             });
           } catch (err) {
+            handleError(err.messega);
             my.alert({ title: 'Xoá tài khoản thất bại' });
           }
         }
@@ -103,7 +106,7 @@ Page({
     console.log(editValue);
     if (editPassword) {
       if (editValue.newPass !== editValue.confirmPass) {
-        this.setData({ messega: "Xác nhận mật khẩu thất bại" });
+        this.setData({ message: "Xác nhận mật khẩu thất bại" });
         return;
       }
     } 
@@ -112,36 +115,33 @@ Page({
     console.log(keys);
     for (let i in keys) {
       if (!editValue[keys[i]]) {
-        this.setData({ messega: "Điền thông tin đầy đủ" });
+        this.setData({ message: "Điền thông tin đầy đủ" });
         return;
       }
     }
 
+    const data = editPassword ? {
+      newPassword: editValue.newPass,
+      password: editValue.password,
+    } : {
+      name: editValue.name,
+      age: editValue.age,
+      password: editValue.password,
+    }
 
     try {
-      const token = await getStorage('token');
-      const data = editPassword ? {
-        newPassword: editValue.newPass,
-        password: editValue.password,
-      } : {
-        name: editValue.name,
-        age: editValue.age,
-        password: editValue.password,
-      }
-     
-      const res = await postUpdateUserProfileAPI(token, data);
+      const res = await postUpdateUserProfileAPI(await havingToken(data));
     
       my.alert({
         title: 'Cập nhật thông tin',
-        content: res.messega,
+        content: res.message,
         success: () => {
           this.setData({ isEdit: false });
         }
       });
 
     } catch (err) {
-      const app = getApp();
-      app.loadUser();
+      handleError(err.messega);
     }
   }
 });

@@ -1,17 +1,14 @@
 import query from 'query-string';
 import {
+  havingToken,
   getTaskByIdAPI,
   updateTaskByIdAPI,
   deleteTaskByIdAPI,
 } from '../../services/index';
 
 import {
-  navigateToTask
-} from '../../utils/navigate';
-
-import {
-  getStorage
-} from '../../utils/storage';
+  handleError
+} from '../../utils/error';
 
 Page({
   data: {
@@ -20,20 +17,16 @@ Page({
     status: '',
     createdAt: '',
     updatedAt: '',
-    completed: null,
-    isLoading: true
+    completed: null
   },
   async onLoad(options) {
-    this.setData({ isLoading: true });
-
     try {
-      const token = await getStorage('token');
       this.handleIconsToNavigationBar();
 
       const parse = query.parse(options);
       const id = options === undefined ? this.data.id : parse.id;
       
-      const task = await getTaskByIdAPI(token, id);
+      const task = await getTaskByIdAPI(await havingToken({ id } ));
       const { description, completed, createdAt, updatedAt } = task;
   
       this.setData({
@@ -42,12 +35,10 @@ Page({
         completed,
         status: completed ? 'Đã hoàn thành' : 'Đang tiến hành',
         createdAt,
-        updatedAt,
-        isLoading: false
+        updatedAt
       });
     } catch (err) {
-      const app = getApp();
-      app.loadUser();
+      handleError(err.message);
     }
   
   },
@@ -61,14 +52,13 @@ Page({
   },
   async onCustomIconEvent() {
     try {
-      const token = await getStorage('token');
       my.confirm({
         title: 'Xác nhận xoá task',
         confirmButtonText: 'Xác nhận',
         cancelButtonText: 'Huỷ',
         success: async (result) => {
           if (result.confirm) {
-            await deleteTaskByIdAPI(token, this.data.id);
+            await deleteTaskByIdAPI(await havingToken({ id: this.data.id}));
             my.alert({ 
               title: 'Xoá thành công',
               success: () => {
@@ -82,10 +72,8 @@ Page({
         }
       });
     } catch (err) {
-      const app = getApp();
-      app.loadUser();   
-     }
-    
+      handleError(err);
+    }
   },
   handleIconsToNavigationBar() {
     my.addIconsToNavigationBar({
@@ -102,25 +90,19 @@ Page({
     });
   },
   async handleInprocess() {
-    this.setData({ isLoading: true });
     try {
-      const token = await getStorage('token');
-      await updateTaskByIdAPI(token, this.data.id, false);
+      await updateTaskByIdAPI(await havingToken({ id: this.data.id, completed: false }));
       this.onLoad();
     } catch (err) {
-      const app = getApp();
-      app.loadUser(); 
+      handleError(err.messega);
     }
   },
   async handleCompleted() {
-    this.setData({ isLoading: true });
     try {
-      const token = await getStorage('token');
-      await updateTaskByIdAPI(token, this.data.id, true);
+      await updateTaskByIdAPI(await havingToken({ id: this.data.id, completed: true }));
       this.onLoad();
     } catch (err) {
-      const app = getApp();
-      app.loadUser(); 
+      handleError(err.messega);
     }
   }
 });

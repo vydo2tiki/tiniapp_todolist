@@ -6,24 +6,22 @@ import {
 import {
   getAllTaskAPI,
   getTaskByPaginationAPI,
-  getTaskbyCompletedAPI
+  getTaskbyCompletedAPI,
+  havingToken
 } from '../../services/index';
 
 import {
-  getStorage
-} from '../../utils/storage'
+  handleError
+} from '../../utils/error';
 
 Page({
   data: {
-    isLoading: true,
     task: [],
     completed: [],
     inprocess: [],
     banner: [],
   },
-  async onLoad(query) {
-    this.setData({ isLoading: true });
-    const token = await getStorage('token');
+  async loadData() {
     try {
       const [
         task,
@@ -31,10 +29,10 @@ Page({
         completed,
         inprocess
       ] =  await Promise.all([
-        getTaskByPaginationAPI(token, 10, 0),
-        getTaskByPaginationAPI(token, 6, 0),
-        getTaskbyCompletedAPI(token, true),
-        getTaskbyCompletedAPI(token, false)
+        getTaskByPaginationAPI(await havingToken({ limit: 10, skip: 0 })),
+        getTaskByPaginationAPI(await havingToken({ limit: 6, skip: 0 })),
+        getTaskbyCompletedAPI(await havingToken({ completed: true })),
+        getTaskbyCompletedAPI(await havingToken({ completed: false }))
       ]);
 
       const group = banner.reduce((acc, item, index) => {
@@ -48,24 +46,24 @@ Page({
         task,
         banner: group,
         completed: completed.slice(0, 10),
-        inprocess: inprocess.slice(0, 10)
+        inprocess: inprocess.slice(0, 10),
       })
-    } catch {
-      this.setData({
-        isLoading: false,
-      });
+    } catch (err) {
+      handleError(err.message);
     }
   },
   onReady() {
   },
   onShow() {
-    this.onLoad();  
+    this.loadData();  
   },
-  onHide() {
+  onNavigateCompleted() {
+    navigateToTask({completed: true});
   },
-  onUnload() {
+  onNavigateInProcess() {
+    navigateToTask({completed: false});
   },
   onNavigate() {
     navigateToTask();
-  },
+  }
 });

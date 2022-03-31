@@ -1,10 +1,3 @@
-export const CoverUrl = (data) => {
-  const keys = Object.keys(data);
-  const params = keys.map(x => `${x}=${data[x]}`);
-  const paramurl = params.join('&');
-  return paramurl;
-}
-
 export const CompareKey = (a, b, key, sortmode) => {
   if (key === 'description') {
     if (sortmode === 'desc')

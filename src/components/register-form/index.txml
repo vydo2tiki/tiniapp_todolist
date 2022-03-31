@@ -21,7 +21,7 @@
         </view>
 
         <view class="text-center mb-medium">
-          <text style="color: red" >{{messega}}</text>
+          <text style="color: red" >{{message}}</text>
         </view>
 
         <auth-button onTapActionButton="handleNextStep" title="Tiếp tục" />
@@ -76,7 +76,7 @@
         </view> 
 
         <view class="text-center mb-medium">
-          <text style="color: red" >{{messega}}</text>
+          <text style="color: red" >{{message}}</text>
         </view>
 
         <auth-button onTapActionButton="handleRegister" class="mb-small" title="Đăng ký" />

@@ -11,7 +11,7 @@ Component({
     age: '',
     password: '',
     confirmPassword: '',
-    messega: ''
+    message: ''
   },
   props: {
     onRegister: () => {},
@@ -21,11 +21,11 @@ Component({
     handleRegister(step) {
       const {email, password, confirmPassword, age, name, activeIndex} = this.data;
       if (!password || !confirmPassword || !name || !age) {
-        this.setData({ messega: 'Điền đầy đủ thông tin' })
+        this.setData({ message: 'Điền đầy đủ thông tin' })
         return 0;
       }
       if (password != confirmPassword) {
-        this.setData({ messega: 'Mật khẩu xác nhận không trùng khớp' })
+        this.setData({ message: 'Mật khẩu xác nhận không trùng khớp' })
         return 0;
       }
 
@@ -38,16 +38,16 @@ Component({
     handleNextStep() {
       const currentIntex = this.data.activeIndex;
       if (!this.data.email) {
-        this.setData({ messega: 'Điền đầy đủ thông tin' });
+        this.setData({ message: 'Điền đầy đủ thông tin' });
       } else {
-        this.setData({ messega: '' });
+        this.setData({ message: '' });
         this.setData({ activeIndex: currentIntex + 1 });
       }
     },
     handlePrevStep() {
       const currentIntex = this.data.activeIndex;
       this.setData({ activeIndex: currentIntex - 1 });
-      this.setData({ messega: '' });
+      this.setData({ message: '' });
     },
     handleLogIn() {
       my.reLaunch({ url: 'pages/home/index' });

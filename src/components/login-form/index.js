@@ -5,7 +5,7 @@ Component({
   },
   props: { 
     onLogin: () => {},
-    messega: ''
+    message: ''
   },
   methods: {
     handleLogin() {

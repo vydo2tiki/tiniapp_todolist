@@ -2,7 +2,7 @@ import {navigateToTaskDetail} from '../../utils/navigate';
 
 Component({
   props: {
-    task: []
+    task: [],
   },
   methods: {
     onChange(e) {

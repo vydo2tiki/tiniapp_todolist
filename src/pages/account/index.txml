@@ -5,21 +5,21 @@
     </view>
     <view class="text-right pr-large font-bold text-2x-large">{{user.name}}</view>
     <button 
-      onTap="onShow"
+      onTap="onSheetShow"
       class="button-avatar"
     >
       <image src="../../assets/icon/edit.png" />
     </button>
   </view>
 
-  <view class="{{!show ? 'bottom-sheet-hide' : 'bottom-sheet '}}" >
+  <view tiki:if={{isShow}} class="bottom-sheet" >
     <list-item onClick="onChooseImage" padding>
       <view>Đổi ảnh đại diện</view>
     </list-item>
     <list-item onClick="onDeleteImage" padding>
       <view>Xoá đại diện</view>
     </list-item>
-    <list-item onClick="onHide" padding>
+    <list-item onClick="onSheetHide" padding>
       <view>Huỷ</view>
     </list-item>
   </view>

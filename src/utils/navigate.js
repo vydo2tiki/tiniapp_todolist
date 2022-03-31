@@ -8,8 +8,8 @@ export const navigateToTrash = () => {
   my.navigateTo({ url: 'pages/trash/index' });
 };
 
-export const navigateToTask = () => {
-  my.navigateTo({ url: `pages/taskMain/index` });
+export const navigateToTask = (data) => {
+  my.navigateTo({ url: `pages/taskMain/index?${queryString.stringify(data)}` });
 };
 
 export const navigateToNotFound = () => {

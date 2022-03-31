@@ -1,11 +1,12 @@
 import EventEmitter from './utils/event';
 import {
-  getLoggedUserAPI
+  getLoggedUserAPI,
+  havingToken
 } from './services/index';
 
 import {
-  getStorage
-} from './utils/storage';
+  handleError
+} from './utils/error';
 
 App({
   authEvent: new EventEmitter(),
@@ -19,17 +20,11 @@ App({
   task: [],
   async loadUser() {
     this.auth.isLogin = false;
-    const token = await getStorage('token');
-    console.log(token);
     try {
-      if (token) {
-        const auth = await getLoggedUserAPI(token);
-        this.auth = { isLogin: true ,...auth.user};
-      } else {
-        my.reLaunch({ url: 'pages/auth/index' });
-      }
+      const auth = await getLoggedUserAPI(havingToken());
+      this.auth = { isLogin: true ,...auth.user};
     } catch (err) {
-      my.reLaunch({ url: 'pages/auth/index' });
+      handleError(err.message);
     }
   },
   onShow(options) {

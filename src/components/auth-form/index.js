@@ -10,7 +10,7 @@ import {
 Component({
   props: {
     activeLogin: true,
-    messega: '',
+    message: '',
     isSuccess: false
   },
   methods: {
@@ -20,21 +20,21 @@ Component({
     async onLogin(email, password) {
       const app = getApp();
       if (email == '' || password == '') {
-        this.setData({ messega: "Điền thông tin đăng nhập" });
+        this.setData({ message: "Điền thông tin đăng nhập" });
       } else {
         try {
           const res = await postLoginAPI({ email, password });
-          this.setData({ messega: "" });
+          this.setData({ message: "" });
           const data =  await setStorage("token", res.token);
           my.reLaunch({ url: 'pages/home/index' });
         } catch (err) {
-          this.setData({ messega: "Email hoặc mật khẩu không chính xác" });
+          this.setData({ message: "Email hoặc mật khẩu không chính xác" });
         }
       }
     },
     async onRegister(email, password) {
       if (email == '' || password == '') {
-        this.setData({ messega: "Điền thông tin đăng nhập" });
+        this.setData({ message: "Điền thông tin đăng nhập" });
       } else {
         try {
           const res = await postRegisterUserAPI({ email, password });
