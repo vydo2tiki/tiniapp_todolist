@@ -67,7 +67,7 @@ Page({
       });
 
     } catch (err) {
-      handleError(err.messega)
+      handleError(err.message)
     }
   },
   onReady() {
@@ -102,7 +102,7 @@ Page({
               });
             } else throw new Error("Server Error");
           } catch (err) {
-            handleError(err.messega);
+            handleError(err.message);
             my.alert({
               title: "Xoá thất bại",
               success: () => {
@@ -128,7 +128,7 @@ Page({
               this.setData({ avatar: image.url });
             } catch (err) {
               console.log(err);
-              handleError(err.messega);
+              handleError(err.message);
               my.alert({ title: 'Cập nhật ảnh thất bại' });
             }
       
@@ -136,7 +136,7 @@ Page({
             my.alert({ title: 'Cập nhật ảnh thất bại' });
           } 
         } catch (err) {
-          handleError(err.messega);
+          handleError(err.message);
           my.alert({ title: 'Cập nhật ảnh thất bại' });
         }
       },
@@ -151,7 +151,7 @@ Page({
       await removeStorage('token');
       my.reLaunch({ url: 'pages/auth/index' });
     } catch (err) {
-      handleError(err.messega);
+      handleError(err.message);
     }
   }, 
   onSheetShow() {

@@ -55,7 +55,7 @@ Page({
         completed: options ? parse.completed === "true" : completed
       });
     } catch (err) {
-      handleError(err.messega);
+      handleError(err.message);
     }
   },
   onReady() {

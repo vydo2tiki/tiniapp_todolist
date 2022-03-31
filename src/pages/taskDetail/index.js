@@ -94,7 +94,7 @@ Page({
       await updateTaskByIdAPI(await havingToken({ id: this.data.id, completed: false }));
       this.onLoad();
     } catch (err) {
-      handleError(err.messega);
+      handleError(err.message);
     }
   },
   async handleCompleted() {
@@ -102,7 +102,7 @@ Page({
       await updateTaskByIdAPI(await havingToken({ id: this.data.id, completed: true }));
       this.onLoad();
     } catch (err) {
-      handleError(err.messega);
+      handleError(err.message);
     }
   }
 });

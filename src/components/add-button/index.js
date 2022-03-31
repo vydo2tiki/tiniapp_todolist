@@ -30,7 +30,7 @@ Component({
                 const res = await postAddTaskAPI(await havingToken({ description: result.inputValue}));
                 navigateToTaskDetail(res.id);
               } catch (err) {
-                handleError(err.messega);
+                handleError(err.message);
               }
             }
           }

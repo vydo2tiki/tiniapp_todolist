@@ -27,7 +27,7 @@ Page({
       const auth = await getLoggedUserAPI(await havingToken());
       this.setData({ user: auth.user });
     } catch (err) {
-      handleError(err.messega);
+      handleError(err.message);
     }
   },
   onReady() {
@@ -56,7 +56,7 @@ Page({
               }
             });
           } catch (err) {
-            handleError(err.messega);
+            handleError(err.message);
             my.alert({ title: 'Xoá tài khoản thất bại' });
           }
         }
@@ -141,7 +141,7 @@ Page({
       });
 
     } catch (err) {
-      handleError(err.messega);
+      handleError(err.message);
     }
   }
 });
