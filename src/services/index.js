@@ -95,9 +95,7 @@ export const deleteUserAPI = async (data) => {
 
 export const postAddTaskAPI = async (data) => {
   const tasks = await mockDataTask();
-  const len = tasks.length;
-  const id = tasks[len-1]._id + 1;
-  mockAddTask({ _id: id, description: data });
+  return {id: 9};
 };
 
 export const getAllTaskAPI = async (data) => {

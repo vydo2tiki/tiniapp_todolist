@@ -1,6 +1,13 @@
 import {
-  postAddTaskAPI
+  postAddTaskAPI,
+  havingToken
 } from '../../services/index';
+
+import {handleError} from '../../utils/error';
+
+import {
+  navigateToTaskDetail
+} from '../../utils/navigate';
 
 Component({
   props: { 
@@ -19,7 +26,12 @@ Component({
                 title: 'Chưa nhập mô tả'
               });
             } else {
-              await postAddTaskAPI("token", result.inputValue);
+              try {
+                const res = await postAddTaskAPI(await havingToken({ description: result.inputValue}));
+                navigateToTaskDetail(res.id);
+              } catch (err) {
+                handleError(err.messega);
+              }
             }
           }
         }
