@@ -70,12 +70,12 @@ export const postUploadImageAPI = async (data) => {
 
 export const getImageAPI = async (data) => {
   await fakeRequest(3000);
-  const success = Math.floor(Math.random() * 2);
+  const success = Math.floor(Math.random() * 4);
   const url = [
     "../../assets/images/user-avatar.png",
     "../../assets/images/avatar.png"
   ];
-  if (success) return { url: url[success] };
+  if (success) return { url: url[success % 2] };
   throw new Error("Server Error");
 };
 

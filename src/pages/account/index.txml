@@ -16,7 +16,7 @@
     <list-item onClick="onChooseImage" padding>
       <view>Đổi ảnh đại diện</view>
     </list-item>
-    <list-item onClick="onDeleteImage" padding>
+    <list-item tiki:if="{{avatar}}" onClick="onDeleteImage" padding>
       <view>Xoá đại diện</view>
     </list-item>
     <list-item onClick="onSheetHide" padding>
