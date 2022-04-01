@@ -14,6 +14,8 @@ import {
 import query from 'query-string';
 
 // User API -----------------------------
+// Khi lấy token từ storage sẽ mất 1 thời gian request => Cần tối ưu hơn.
+// Dùng biến token => Vừa vào app thì get từ storeage đưa vào | Khi cập nhật thì cập nhật biến này + biến từ storage
 export const havingToken = async (data = {}) => {
   const token = await getStorage('token');
   if (token === undefined) {

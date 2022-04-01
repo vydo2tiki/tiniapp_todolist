@@ -23,6 +23,7 @@ Page({
   },
   async loadData() {
     try {
+      // Xử lý chỗ havingToken này đang hơi cồng kềnh. Nó sẽ await x4 lần mới bắt đầu chạy các task
       const [
         task,
         banner,
@@ -54,6 +55,7 @@ Page({
   },
   onReady() {
   },
+  // Nên đưa vào onLoad
   onShow() {
     this.loadData();  
   },

@@ -33,6 +33,7 @@ Page({
         id,
         description,
         completed,
+        // Không nên đưa status text ở đây. Nên đưa ở txml
         status: completed ? 'Đã hoàn thành' : 'Đang tiến hành',
         createdAt,
         updatedAt

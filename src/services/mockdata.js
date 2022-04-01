@@ -1,5 +1,6 @@
 import {tasks} from '../utils/constants';
 
+// Này không phải promise
 export const fakeRequest = (milliseconds) => {
   new Promise((resolve) => {
     setTimeout(() => {

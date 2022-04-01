@@ -25,6 +25,7 @@ import {
 
 Page({
   data: {
+    // Không nên đặt function này vào trong => Cứ listing bên ngoài txml
     pages: [
       { 
         icon: "../../assets/icon/update-account.png",
@@ -53,6 +54,7 @@ Page({
   },
   async loadData() {
     try {
+      // Token có thể add trực tiếp vào header luôn
       const [
         auth,
         image
