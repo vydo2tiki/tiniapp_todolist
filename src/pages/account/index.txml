@@ -1,14 +1,18 @@
-<view>
-  <view class="account-avatar">
-    <image tiki:if="{{avatar}}" class="account-avatar-img" src="{{avatar}}" />
-    <view tiki:if="{{!avatar}}" class="account-avatar-img">
+<view tiki:if={{isLoading}}>
+  <loading />
+</view>
+
+<view tiki:else>
+  <view class="account__avatar">
+    <image tiki:if="{{avatar}}" class="account__avatar__image" src="{{avatar}}" />
+    <view tiki:if="{{!avatar}}" class="account__avatar__image">
     </view>
     <view class="text-right pr-large font-bold text-2x-large">{{user.name}}</view>
     <button 
       onTap="onSheetShow"
       class="button-avatar"
     >
-      <image src="../../assets/icon/edit.png" />
+      <image src="/assets/icon/edit.png" />
     </button>
   </view>
 
@@ -24,10 +28,10 @@
     </list-item>
   </view>
   
-  <view class="account-setting">
+  <view class="account__setting">
     <block tiki:for="{{pages}}">
-      <view onTap="_navigateTo" data-index="{{index}}" class="account-content">
-        <image class="account-image" src="{{item.icon}}" />
+      <view onTap="_navigateTo" data-index="{{item.key}}" class="account__content">
+        <image class="account__setting__image" src="{{item.icon}}" />
         <view class="text-medium">
           {{item.title}}
         </view>
@@ -35,7 +39,7 @@
     </block>
   </view>
 
-  <view class="account-logout">
+  <view class="account__logout">
     <button onTap="onLogout" class="logout-button">
       Đăng xuất
     </button>

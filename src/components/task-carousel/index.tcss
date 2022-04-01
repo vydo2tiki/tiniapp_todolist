@@ -1,9 +1,9 @@
 .task-carousel {
-  background-image: url("../../assets/images/background.jpeg");
+  background-image: url("/assets/images/background.jpeg");
   padding: 20px;
 }
 
-.task-carousel-content {
+.task-carousel__content {
   border-radius: 5px;
   padding: 10px;
   border: none;
@@ -13,7 +13,7 @@
   height: 100px;
   text-align: center;
   
-  background-image: url("../../assets/images/inprocess-bg.jpeg");
+  background-image: url("/assets/images/inprocess-bg.jpeg");
   background-size: cover;
   background-position: center;
 
@@ -26,12 +26,12 @@
   justify-content: center;
 }
 
-.task-carousel-container {
+.task-carousel__container {
   display: flex;
   flex-wrap: row wrap;
   justify-content: space-around;
 }
 
-.task-carousel-content-success {
-  background-image: url("../../assets/images/completed-bg.jpeg");
+.task-carousel__content--success {
+  background-image: url("/assets/images/completed-bg.jpeg");
 }

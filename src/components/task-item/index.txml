@@ -2,7 +2,7 @@
 
 <view>
   <template name="horizontal">
-    <view onTap="_onNavigateTo" class="task-item-horizontal">
+    <view onTap="_onNavigateTo" class="task-item__horizontal">
       <text class="p-small" >{{item.description}}</text>
       <text class="badge">
       </text>
@@ -10,15 +10,15 @@
   </template>
 
   <template name="horizontal-completed">
-    <view onTap="_onNavigateTo" class="task-item-horizontal task-item-horizontal-completed">
+    <view onTap="_onNavigateTo" class="task-item__horizontal task-item__horizontal--completed">
       <text class="p-small" >{{item.description}}</text>
-      <text class="badge badge-completed">
+      <text class="badge badge--completed">
       </text>
     </view>
   </template>
 
   <template name="vertical">
-    <view onTap="_onNavigateTo" class="task-item-vertical">
+    <view onTap="_onNavigateTo" class="task-item__vertical">
       <text class="font-bold text-medium">
         {{item.description}}
       </text>

@@ -21,4 +21,22 @@ export const request = async ({ path, method = 'GET', headers = {}, data }) => {
   });
 };
 
+export const fakeRequest = (milliseconds, isToken, success, data) => {
+  return new Promise((resolve, reject) => {
+    const app = getApp();
+    const token = app.auth.token;
+    if (isToken && !token) {
+      reject(new Error('Unauthorized'));
+    } else {
+      if (!success) {
+        reject(new Error('Server Error'));
+      } else {
+        setTimeout(() => {
+          resolve(data);
+        }, milliseconds);
+      }
+    }
+  });
+};
+
 export default request;

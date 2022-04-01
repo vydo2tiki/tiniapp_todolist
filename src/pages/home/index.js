@@ -1,18 +1,12 @@
-import {
-  navigateToTask,
-  navigateToAuth,
-} from '../../utils/navigate';
+import { navigateToTask, navigateToAuth } from '../../utils/navigate';
 
 import {
   getAllTaskAPI,
   getTaskByPaginationAPI,
-  getTaskbyCompletedAPI,
-  havingToken
+  getTaskbyCompletedAPI
 } from '../../services/index';
 
-import {
-  handleError
-} from '../../utils/error';
+import { handleError } from '../../utils/error';
 
 Page({
   data: {
@@ -20,20 +14,17 @@ Page({
     completed: [],
     inprocess: [],
     banner: [],
+    isLoading: true
   },
   async loadData() {
+    this.setData({ isLoading: true });
     try {
-      // Xử lý chỗ havingToken này đang hơi cồng kềnh. Nó sẽ await x4 lần mới bắt đầu chạy các task
-      const [
-        task,
-        banner,
-        completed,
-        inprocess
-      ] =  await Promise.all([
-        getTaskByPaginationAPI(await havingToken({ limit: 10, skip: 0 })),
-        getTaskByPaginationAPI(await havingToken({ limit: 6, skip: 0 })),
-        getTaskbyCompletedAPI(await havingToken({ completed: true })),
-        getTaskbyCompletedAPI(await havingToken({ completed: false }))
+      // Xử lý chỗ   này đang hơi cồng kềnh. Nó sẽ await x4 lần mới bắt đầu chạy các task
+      const [task, banner, completed, inprocess] = await Promise.all([
+        getTaskByPaginationAPI({ limit: 10, skip: 0 }),
+        getTaskByPaginationAPI({ limit: 6, skip: 0 }),
+        getTaskbyCompletedAPI({ completed: true }),
+        getTaskbyCompletedAPI({ completed: false })
       ]);
 
       const group = banner.reduce((acc, item, index) => {
@@ -42,30 +33,32 @@ Page({
         }
         return acc;
       }, []);
-      
+
       this.setData({
         task,
         banner: group,
         completed: completed.slice(0, 10),
         inprocess: inprocess.slice(0, 10),
-      })
+      });
+
+      this.setData({ isLoading: false });
     } catch (err) {
       handleError(err.message);
+      this.setData({ isLoading: false });
     }
   },
-  onReady() {
-  },
+  onReady() {},
   // Nên đưa vào onLoad
   onShow() {
-    this.loadData();  
+    this.loadData();
   },
   onNavigateCompleted() {
-    navigateToTask({completed: true});
+    navigateToTask({ completed: true });
   },
   onNavigateInProcess() {
-    navigateToTask({completed: false});
+    navigateToTask({ completed: false });
   },
   onNavigate() {
     navigateToTask();
-  }
+  },
 });

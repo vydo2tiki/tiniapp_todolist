@@ -1,9 +1,9 @@
 <view class="auth">
-  <view class="auth-logo">
+  <view class="auth__logo">
     <image class="logo" src="/assets/images/logo.png" />
   </view>
 
-  <view class="auth-form"> 
+  <view class="auth__form"> 
     <auth-form activeLogin="true" />
   </view>
 </view>

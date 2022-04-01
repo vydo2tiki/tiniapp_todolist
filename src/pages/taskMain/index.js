@@ -1,17 +1,10 @@
-import {SORTTYPE} from '../../utils/constants';
+import { SORTTYPE } from '../../utils/constants';
 import query from 'query-string';
-import {
-  getUrlTaskAPI,
-  havingToken
-} from '../../services/index';
+import { getUrlTaskAPI } from '../../services/index';
 
-import {
-  CompareKey
-} from '../../utils/common';
+import { CompareKey } from '../../utils/common';
 
-import {
-  handleError
-} from "../../utils/error";
+import { handleError } from '../../utils/error';
 
 Page({
   data: {
@@ -21,54 +14,52 @@ Page({
     end: false,
     sortmode: null,
     completed: null,
-    sorttype: SORTTYPE
+    sorttype: SORTTYPE,
+    isLoading: true
   },
   async onLoad(options) {
+    this.setData({ isLoading: true });
     const { completed, page, sortmode, selected } = this.data;
     const parse = {
       completed,
-      ...query.parse(options)
+      ...query.parse(options),
     };
-    
-    const url = query.stringify({ 
-      completed: parse.completed, 
+
+    const url = query.stringify({
+      completed: parse.completed,
       limit: 10 * page,
-      skip: 0
-    })
+      skip: 0,
+    });
 
     try {
       const task = await getUrlTaskAPI(url);
-  
+
       if (task.length < 10 * page) {
         this.setData({ end: true });
       } else this.setData({ end: false });
-  
+
       if (sortmode !== null) {
         const key = selected.name;
-        task.sort(function(a, b) {
+        task.sort(function (a, b) {
           return CompareKey(a, b, key, sortmode);
         });
-      } 
-  
-      this.setData({ 
+      }
+
+      this.setData({
         task,
-        completed: options ? parse.completed === "true" : completed
+        completed: options ? parse.completed === 'true' : completed,
       });
+
+      this.setData({ isLoading: false });
     } catch (err) {
       handleError(err.message);
+      this.setData({ isLoading: false });
     }
   },
-  onReady() {
-
-  },
-  onShow() {
- 
-  },
-  onHide() {
-  },
-  onUnload() {
-
-  },
+  onReady() {},
+  onShow() {},
+  onHide() {},
+  onUnload() {},
   onSelect(selected) {
     this.setData({ selected });
     this.onLoad();
@@ -83,13 +74,15 @@ Page({
     this.onLoad();
   },
   handleSort(e) {
-    const sortmode = this.data.sortmode === e.target.dataset.sortmode ? null : e.target.dataset.sortmode
+    const sortmode =
+      this.data.sortmode === e.target.dataset.sortmode ? null : e.target.dataset.sortmode;
     this.setData({ sortmode });
     this.onLoad();
   },
   handleStatus(e) {
-    const completed = this.data.completed === e.target.dataset.completed ? null : e.target.dataset.completed
+    const completed =
+      this.data.completed === e.target.dataset.completed ? null : e.target.dataset.completed;
     this.setData({ completed });
     this.onLoad();
-  }
+  },
 });

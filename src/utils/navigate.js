@@ -21,5 +21,5 @@ export const navigateToTaskDetail = (task_id) => {
 };
 
 export const navigateToAuth = () => {
-  my.navigateTo({ url: 'pages/auth/index' })
+  my.navigateTo({ url: 'pages/auth/index' });
 };

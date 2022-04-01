@@ -1,6 +1,10 @@
-<view>
-  <view class="task-header">
-    <view class="task-sort">
+<view tiki:if={{isLoading}}>
+  <loading />
+</view>
+
+<view tiki:else>
+  <view class="task-main__header">
+    <view class="task-main__header__sort">
       <dropdown
         bottomSheetHeight="300"
         labelKey="label"
@@ -33,11 +37,11 @@
     </button>
   </view>
 
-  <view class="task-header mb-large">
+  <view class="task-main__header mb-large">
     <button 
       onTap="handleStatus"
       data-completed="{{true}}"
-      class="{{completed === true ? 'button-completed-on' : 'button-completed-off'}}" 
+      class="{{completed === true ? 'button-completed--on' : 'button-completed--off'}}" 
       size="medium" 
       shape="pill"
     >
@@ -47,7 +51,7 @@
     <button 
       onTap="handleStatus"
       data-completed="{{false}}"
-      class="{{completed === false ? 'button-completed-on' : 'button-completed-off'}}" 
+      class="{{completed === false ? 'button-completed--on' : 'button-completed--off'}}" 
       size="medium" 
       shape="pill"
     >

@@ -29,7 +29,7 @@
   border-radius: calc(var(--logo-width)/2);
 }
 
-.auth-form-control {
+.auth__form-control {
   height: auto;
   border-radius: 20px;
   padding: 12px 20px;

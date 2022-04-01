@@ -11,7 +11,7 @@
         <view class="mb-large">
           <text class="ml-large text-medium font-bold">Nhập Email đăng ký: </text>
           <input    
-            class="auth-form-control mt-3x-small"
+            class="auth__form-control mt-3x-small"
             placeholder="Email"
             type="email"
 
@@ -31,7 +31,7 @@
         <view>
           <text class="ml-large text-medium font-bold">Họ tên: </text>
           <input    
-            class="auth-form-control"
+            class="auth__form-control"
             placeholder="Họ tên"
 
             onInput="handleChangeInput"
@@ -42,7 +42,7 @@
         <view>
           <text class="ml-large text-medium font-bold">Tuổi: </text>
           <input    
-            class="auth-form-control"
+            class="auth__form-control"
             placeholder="Tuổi"
             type="number"
 
@@ -54,7 +54,7 @@
         <view>
           <text class="ml-large text-medium font-bold">Mật khẩu: </text>
           <input    
-            class="auth-form-control"
+            class="auth__form-control"
             placeholder="Mật khẩu"
             password="{{true}}"
 
@@ -66,7 +66,7 @@
         <view class="mb-large">
           <text class="ml-large text-medium font-bold">Nhập lại mật khẩu: </text>
           <input    
-            class="auth-form-control"
+            class="auth__form-control"
             placeholder="Nhập lại mật khẩu"
             password="{{true}}"
 
@@ -83,18 +83,24 @@
         <auth-button onTapActionButton="handlePrevStep" title="Quay lại" />
       </view>
 
-      <view tiki:if="{{activeIndex == 2 && isSuccess}}"  class="text-center mt-large step-item" >
+      <view tiki:if="{{activeIndex == 2 && isSuccess == true}}"  class="text-center mt-large step-item" >
         <image class="logo logo-circle" src="/assets/images/success.png" />
         <view class="mb-large font-bold text-medium">Đăng ký thành công! Chào {{name}}.</view>
         <auth-button onTapActionButton="handleLogIn" title="Ấn để đăng nhập" />
       </view> 
 
-      <view tiki:if="{{activeIndex == 2 && !isSuccess}}" class="text-center mt-large step-item" >
+      <view tiki:if="{{activeIndex == 2 && isSuccess == false}}" class="text-center mt-large step-item" >
         <image class="logo logo-circle" src="/assets/images/fail.svg" />
         <view class="mb-large font-bold text-medium">
           Đăng ký thất bại! Email đã được sử dụng.
         </view>
         <auth-button onTapActionButton="handlePrevStep" title="Quay lại" />
+      </view>
+
+      <view tiki:if="{{activeIndex == 2 && isSuccess == null}}" class="text-center mt-large step-item" >
+        <view class="mb-large font-bold text-medium">
+          Đang đăng ký...
+        </view>
       </view>
   </view>
 

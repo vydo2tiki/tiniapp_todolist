@@ -1,13 +1,13 @@
 Component({
-  props: { 
-    className: "",
-    type: "",
-    onTapActionButton: () => {}
+  props: {
+    className: '',
+    type: '',
+    onTapActionButton: () => {},
   },
 
   methods: {
     _onTapActionButton() {
       this.props.onTapActionButton();
-    }
-  }
+    },
+  },
 });

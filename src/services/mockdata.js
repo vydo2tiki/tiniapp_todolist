@@ -1,23 +1,12 @@
-import {tasks} from '../utils/constants';
+import { tasks } from '../utils/constants';
 
-// Này không phải promise
-export const fakeRequest = (milliseconds) => {
-  new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, milliseconds);
-  });
+export const mockDataTask = () => {
+  return tasks;
 };
 
-export const mockDataTask = async () => {
-  await fakeRequest(2000);
+export const mockUpdateTask = (data) => {};
+
+export const mockAddTask = (data) => {
+  tasks.push(data);
   return tasks;
-}
-
-export const mockUpdateTask = async (data) => {
-  await fakeRequest(5000);
-}
-
-export const mockAddTask = async (data) => {
-  await fakeRequest(5000);
-}
+};

@@ -3,9 +3,6 @@ Component({
     task: [],
     type: '',
   },
-  didMount() {
-  },
-  methods: {
-  
-  }
+  didMount() {},
+  methods: {},
 });

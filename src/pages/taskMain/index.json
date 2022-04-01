@@ -5,7 +5,8 @@
     "pagination-button": "components/pagination-button/index",
     "task-section": "components/task-section/index",
     "dropdown": "@tiki.vn/tini-ui/es/dropdown/index",
-    "button": "@tiki.vn/tini-ui/es/tu-button/index"
+    "button": "@tiki.vn/tini-ui/es/tu-button/index",
+    "loading": "components/loading/index"
   },
   "backgroundColor": "#f8f9fa"
 }

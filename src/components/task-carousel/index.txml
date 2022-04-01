@@ -5,12 +5,12 @@
   >
     <block tiki:for="{{task}}">
       <carousel-item>
-        <view class="task-carousel-container">
+        <view class="task-carousel__container">
           <block tiki:for="{{item}}" >
             <view  
               onTap="onNavigate" 
               data-id="{{item._id}}"
-              class="task-carousel-content {{item.completed ? 'task-carousel-content-success' : ''}}"
+              class="task-carousel__content {{item.completed ? 'task-carousel__content--success' : ''}}"
             >
               <text>{{item.description}}</text>
             </view>

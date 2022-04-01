@@ -2,7 +2,8 @@
   "defaultTitle": "Cập nhật thông tin",
   "usingComponents": {
     "list-item": "@tiki.vn/tini-ui/es/list/list-item/index",
-    "textfield": "@tiki.vn/tini-ui/es/textfield/index"
+    "textfield": "@tiki.vn/tini-ui/es/textfield/index",
+    "loading": "components/loading/index"
   },
   "titleBarColor": "#ff9933"
 }

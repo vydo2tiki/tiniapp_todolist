@@ -1,18 +1,18 @@
-.task-section-horizontal {
+.task-section__horizontal {
   display: flex;
   width: max-content;
   padding: 0 10px;
 }
 
-.task-section-container {
+.task-section__container {
   overflow-x: auto;
 }
 
-.task-section-container::-webkit-scrollbar {
+.task-section__container::-webkit-scrollbar {
   display: none;
 }
 
-.task-section-vertical {
+.task-section__vertical {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 10px;

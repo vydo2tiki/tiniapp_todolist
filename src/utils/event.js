@@ -30,7 +30,7 @@ class EventEmitter {
     this._getEventListByName(eventName).forEach(
       function (fn) {
         fn.apply(this, args);
-      }.bind(this)
+      }.bind(this),
     );
   }
 

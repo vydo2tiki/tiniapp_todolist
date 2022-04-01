@@ -1,4 +1,4 @@
-.auth-form-header {
+.auth-form__header {
   padding: 20px 10px;
   margin-bottom: 50px;
 
@@ -7,7 +7,7 @@
   justify-content: space-between;
 }
 
-.auth-form-header-title {
+.auth-form__header__title {
   position: relative;
   font-size: 18x;
   font-weight: bold;
@@ -18,11 +18,11 @@
   text-align: center;
 }
 
-.auth-form-header-title-active {
+.auth-form__header__title--active {
   color: var(--color-core);
 }
 
-.auth-form-header-title::after {
+.auth-form__header__title::after {
   content: " ";
   height: 5px;
   width: 100%;

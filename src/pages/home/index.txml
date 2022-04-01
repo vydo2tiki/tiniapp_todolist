@@ -1,4 +1,8 @@
-<view>
+<view tiki:if={{isLoading}}>
+  <loading />
+</view>
+
+<view tiki:else>
   <task-carousel 
     task="{{banner}}" 
   />

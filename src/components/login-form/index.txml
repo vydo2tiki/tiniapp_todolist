@@ -1,6 +1,6 @@
 <view class="step-item">
   <input    
-    class="auth-form-control"
+    class="auth__form-control"
     placeholder="Email"
     type="email"
 
@@ -9,7 +9,7 @@
   />
 
   <input    
-    class="auth-form-control"
+    class="auth__form-control"
     placeholder="Mật khẩu"
     password="{{true}}"
 

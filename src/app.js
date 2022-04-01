@@ -1,33 +1,30 @@
 import EventEmitter from './utils/event';
-import {
-  getLoggedUserAPI,
-  havingToken
-} from './services/index';
-
-import {
-  handleError
-} from './utils/error';
+import { getLoggedUserAPI } from './services/index';
+import { getStorage } from './utils/storage';
+import { handleError } from './utils/error';
 
 App({
   authEvent: new EventEmitter(),
   auth: {
-    isLogin: false,
-    name: "",
-    email: "",
-    age: "",
-    password: "",
+    token: '',
+    name: '',
+    email: '',
+    age: '',
+    password: '',
   },
   task: [],
   async loadUser() {
-    this.auth.isLogin = false;
+    if (!this.auth.token) {
+      this.auth.token = await getStorage('token');
+    }
     try {
-      const auth = await getLoggedUserAPI(havingToken());
-      this.auth = { isLogin: true ,...auth.user};
+      const auth = await getLoggedUserAPI();
+      this.auth = { token, ...auth.user };
     } catch (err) {
       handleError(err.message);
     }
   },
   onShow(options) {
     this.loadUser();
-  }
+  },
 });

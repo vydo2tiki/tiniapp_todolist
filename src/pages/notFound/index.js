@@ -1,17 +1,10 @@
 Page({
   data: {
-    pages: [
-       
-    ]
+    pages: [],
   },
-  onLoad(query) {
-  },
-  onReady() {
-  },
-  onShow() {
-  },
-  onHide() {
-  },
-  onUnload() {
-  }
+  onLoad(query) {},
+  onReady() {},
+  onShow() {},
+  onHide() {},
+  onUnload() {},
 });

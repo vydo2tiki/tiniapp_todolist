@@ -1,4 +1,4 @@
-.task-header {
+.task-main__header {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
@@ -7,21 +7,21 @@
   margin-top: 10px;
 }
 
-.task-sort {
+.task-main__header__sort {
   width: 40%;
 }
 
-.button-completed-on,
-.button-completed-on:hover,
-.button-completed-on:active {
+.button-completed--on,
+.button-completed--on:hover,
+.button-completed--on:active {
   border: 1px solid var(--color-core);
   background-color: var(--color-core);
   color: #fff;
 }
 
-.button-completed-off,
-.button-completed-off:hover,
-.button-completed-off:active {
+.button-completed--off,
+.button-completed--off:hover,
+.button-completed--off:active {
   border: 1px solid var(--color-core);
   color: var(--color-core);
   background-color: #fff;

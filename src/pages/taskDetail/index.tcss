@@ -1,12 +1,12 @@
 .task-detail {
-  background-image: url("../../assets/images/background.jpeg");
+  background-image: url("/assets/images/background.jpeg");
   height: 200px;
   display: flex;
   justify-content: center;
 
 }
 
-.task-detail-contaienr {
+.task-detail__contaienr {
   width: 80%;
   background-color: #fff; 
   position: absolute;
@@ -18,11 +18,11 @@
   box-shadow: 0px 0px 3px #ccc;
 }
 
-.task-detail-header > image {
+.task-detail__header > image {
   width: 100%;
 }
 
-.task-detail-action {
+.task-detail__action {
   position: absolute;
   bottom: -20px;
   width: 100%;

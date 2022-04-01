@@ -1,15 +1,14 @@
-import {navigateToTaskDetail} from '../../utils/navigate';
+import { navigateToTaskDetail } from '../../utils/navigate';
 
 Component({
   props: {
     item: {},
-    type: ''
+    type: '',
   },
-  didMount() {
-  },
+  didMount() {},
   methods: {
     _onNavigateTo(e) {
       navigateToTaskDetail(this.props.item._id);
-    }
-  }
+    },
+  },
 });

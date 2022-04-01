@@ -1,17 +1,11 @@
-import {
-  postAddTaskAPI,
-  havingToken
-} from '../../services/index';
+import { postAddTaskAPI } from '../../services/index';
 
-import {handleError} from '../../utils/error';
+import { handleError } from '../../utils/error';
 
-import {
-  navigateToTaskDetail
-} from '../../utils/navigate';
+import { navigateToTaskDetail } from '../../utils/navigate';
 
 Component({
-  props: { 
-  },
+  props: {},
   methods: {
     _onTapActionButton() {
       my.prompt({
@@ -23,19 +17,19 @@ Component({
           if (result.ok) {
             if (!result.inputValue) {
               my.alert({
-                title: 'Chưa nhập mô tả'
+                title: 'Chưa nhập mô tả',
               });
             } else {
               try {
-                const res = await postAddTaskAPI(await havingToken({ description: result.inputValue}));
+                const res = await postAddTaskAPI({ description: result.inputValue });
                 navigateToTaskDetail(res.id);
               } catch (err) {
                 handleError(err.message);
               }
             }
           }
-        }
+        },
       });
-    }
-  }
+    },
+  },
 });

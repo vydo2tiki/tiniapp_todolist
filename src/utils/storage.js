@@ -28,11 +28,11 @@ export const removeStorage = (key) => {
     my.removeStorage({
       key,
       success: (res) => {
-        resolve(res)
+        resolve(res);
       },
       fail: (fail) => {
         reject(fail);
-      }
+      },
     });
   });
 };

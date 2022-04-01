@@ -1,107 +1,73 @@
-import {
-  fakeRequest, 
-  mockDataTask,
-  mockUpdateTask,
-  mockAddTask
-} from './mockdata';
-
-import {
-  getStorage,
-  setStorage,
-  removeStorage
-} from '../utils/storage'
-
+import { mockDataTask, mockUpdateTask, mockAddTask } from './mockdata';
 import query from 'query-string';
+import { fakeRequest } from './request';
 
 // User API -----------------------------
 // Khi lấy token từ storage sẽ mất 1 thời gian request => Cần tối ưu hơn.
 // Dùng biến token => Vừa vào app thì get từ storeage đưa vào | Khi cập nhật thì cập nhật biến này + biến từ storage
-export const havingToken = async (data = {}) => {
-  const token = await getStorage('token');
-  if (token === undefined) {
-    throw new Error("Unauthorized");
-  }
-  else return {...data, token};
-}
 
-export const postRegisterUserAPI = async ({email, password}) => {
-  await fakeRequest(1000);
+export const postRegisterUserAPI = ({ email, password }) => {
+  const success = Math.floor(Math.random() * 3);
+  return fakeRequest(1000, false, success, { token: 'tokenfake' });
+};
+
+export const postLoginAPI = ({ email, password }) => {
   const success = Math.floor(Math.random() * 2);
-  if (success) return { token: 'tokenfake'};
-  throw new Error("Exists Users"); 
+  return fakeRequest(1000, false, success, { token: 'tokenfake' });
 };
 
-export const postLoginAPI = async ({email, password}) => {
-  await fakeRequest(1000);
+export const postLogoutAPI = () => {
   const success = Math.floor(Math.random() * 2);
-  if (success) return { token: 'tokenfake'};
-  throw new Error("Isvalid User");
+  return fakeRequest(1000, false, success);
 };
 
-export const postLogoutAPI = async () => {
-  await fakeRequest(3000);
-  return { success: true };
-};
-
-export const postUpdateUserProfileAPI = async (data) => {
-  await fakeRequest(1000);
+export const postUpdateUserProfileAPI = (data) => {
   const success = Math.floor(Math.random() * 4);
-  if (success) return { message : 'Cập nhật thành công'};
-  else return { message : 'Cập nhật thất bại'};
+  return fakeRequest(1000, true, success);
 };
 
-export const getLoggedUserAPI = async (data) => {
-  await fakeRequest(1000);
+export const getLoggedUserAPI = () => {
   const success = Math.floor(Math.random() * 4);
   const User = {
-    name: "Nguyễn Văn A",
-    email: "nva@gmail.com",
-    age: "20",
-    password: "12345678"
+    name: 'Nguyễn Văn A',
+    email: 'nva@gmail.com',
+    age: '20',
+    password: '12345678',
   };
-  if (success) return { user: User };
-  throw new Error("Unauthorized");
+  if (!success) throw new Error('Unauthorized');
+  return fakeRequest(1000, true, success, {user: {...User}});
 };
 
-export const postUploadImageAPI = async (data) => {
-  await fakeRequest(3000);
+export const postUploadImageAPI = (data) => {
   const success = Math.floor(Math.random() * 3);
-  if (success) return { success: true };
-  throw new Error("Server Error");
+  return fakeRequest(1000, true, success, { success: true });
 };
 
-export const getImageAPI = async (data) => {
-  await fakeRequest(3000);
+export const getImageAPI = (data) => {
   const success = Math.floor(Math.random() * 4);
   const url = [
-    "../../assets/images/user-avatar.png",
-    "../../assets/images/avatar.png"
-  ];
-  if (success) return { url: url[success % 2] };
-  throw new Error("Server Error");
+    '/assets/images/user-avatar.png', 
+    '/assets/images/avatar.png'];
+  return fakeRequest(1000, true, success, { url: url[success % 2] });
 };
 
-export const deleteImageAPI = async (data) => {
-  await fakeRequest(3000);
+export const deleteImageAPI = (data) => {
   const success = Math.floor(Math.random() * 3);
-  if (success) return { success: true };
-  throw new Error("Server Error");
+  return fakeRequest(1000, true, success, { success: true });
 };
 
-export const deleteUserAPI = async (data) => {
-  await fakeRequest(3000);
-  return { success: true };
+export const deleteUserAPI = (data) => {
+  return fakeRequest(1000, true, true, { success: true });
 };
 
 //Task API ----------------------------------
 
-export const postAddTaskAPI = async (data) => {
-  const tasks = await mockDataTask();
-  return {id: 9};
+export const postAddTaskAPI = (data) => { 
+  return fakeRequest(1000, true, true, {id: 9});
 };
 
-export const getAllTaskAPI = async (data) => {
-  return await mockDataTask();
+export const getAllTaskAPI = (data) => {
+  return fakeRequest(1000, true, true, mockDataTask());
 };
 
 export const getUrlTaskAPI = async (url) => {
@@ -109,9 +75,9 @@ export const getUrlTaskAPI = async (url) => {
 
   let task;
   if (parse.completed !== null) {
-    const completed = (parse.completed === "true");
-    task = await getTaskbyCompletedAPI(await havingToken({completed}));
-  } else task = await getAllTaskAPI(await havingToken());
+    const completed = parse.completed === 'true';
+    task = await getTaskbyCompletedAPI({ completed });
+  } else task = await getAllTaskAPI();
 
   if (parse.limit !== null) {
     const skip = parseInt(parse.skip);
@@ -122,32 +88,33 @@ export const getUrlTaskAPI = async (url) => {
   return task;
 };
 
-export const getTaskByIdAPI = async ({id}) => {
-  const tasks = await mockDataTask();
-  const task = tasks.find(x => x._id == id);
-  return task;
+export const getTaskByIdAPI = ({ id }) => {
+  const tasks = mockDataTask();
+  const task = tasks.find((x) => x._id == id);
+  return fakeRequest(1000, true, true, task);
 };
 
-export const getTaskByPaginationAPI = async ({limit, skip}) => {
-  const tasks = await mockDataTask();
+export const getTaskByPaginationAPI = ({ limit, skip }) => {
+  const tasks = mockDataTask();
   const task = tasks.slice(skip, skip + limit);
-  return task;
+  return fakeRequest(1000, true, true, task);
 };
 
-export const getTaskbyCompletedAPI= async ({completed}) => {
-  const tasks = await mockDataTask();
-  const task = tasks.filter(x => x.completed == completed);
-  return task;
+export const getTaskbyCompletedAPI = ({ completed }) => {
+  const tasks = mockDataTask();
+  const task = tasks.filter((x) => x.completed == completed);
+  return fakeRequest(1000, true, true, task);
 };
 
-export const deleteTaskByIdAPI = async ({id}) => {
-  const tasks = await mockDataTask();
-  const task = tasks.filter(x => x._id != id);
-  await mockUpdateTask(task);
+export const deleteTaskByIdAPI = ({ id }) => {
+  const tasks = mockDataTask();
+  const task = tasks.filter((x) => x._id != id);
+  return fakeRequest(1000, true, true);
 };
 
-export const updateTaskByIdAPI = async ({id, completed}) => {
-  const tasks = await mockDataTask();
-  const index = tasks.findIndex(x => x._id == id);
+export const updateTaskByIdAPI = ({ id, completed }) => {
+  const tasks = mockDataTask();
+  const index = tasks.findIndex((x) => x._id == id);
   tasks[index].completed = completed;
+  return fakeRequest(1000, true, true);
 };

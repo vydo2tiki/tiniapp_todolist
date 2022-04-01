@@ -1,6 +1,6 @@
 export const handleError = (err) => {
   switch (err) {
-    case "Unauthorized": {
+    case 'Unauthorized': {
       my.reLaunch({ url: 'pages/auth/index' });
       break;
     }
@@ -8,4 +8,4 @@ export const handleError = (err) => {
       break;
     }
   }
-}
+};

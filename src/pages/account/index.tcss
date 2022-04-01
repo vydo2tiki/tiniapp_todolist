@@ -1,15 +1,15 @@
-.account-avatar {
-  background-image: url("../../assets/images/background.jpeg");
+.account__avatar {
+  background-image: url("/assets/images/background.jpeg");
   padding: 80px 0 20px 0;
   position: relative;
 }
 
-.account-setting {
+.account__setting {
   padding-top: 20px;
   background-color: #fff;
 }
 
-.account-logout {
+.account__logout {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -22,13 +22,13 @@
   border: none;
 }
 
-.account-image {
+.account__setting__image {
   width: 20px;
   height: 20px;
   margin-right: 10px;
 }
 
-.account-content {
+.account__content {
   background-color: #fff;
   border-bottom: 1px solid #ccc;
   
@@ -37,12 +37,12 @@
   align-items: center;
 }
 
-.account-content:hover, 
-.account-content:active {
+.account__content:hover, 
+.account__content:active {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.account-avatar-img {
+.account__avatar__image {
   position: absolute;
   width: 100px;
   height: 100px;

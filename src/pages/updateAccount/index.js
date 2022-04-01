@@ -1,18 +1,12 @@
 import {
   getLoggedUserAPI,
   postUpdateUserProfileAPI,
-  deleteUserAPI,
-  havingToken
+  deleteUserAPI
 } from '../../services/index';
 
-import {
-  handleError
-} from '../../utils/error';
+import { handleError } from '../../utils/error';
 
-import {
-  getStorage,
-  removeStorage
-} from '../../utils/storage';
+import { getStorage, removeStorage } from '../../utils/storage';
 
 Page({
   data: {
@@ -20,25 +14,26 @@ Page({
     editPassword: false,
     editValue: {},
     user: null,
-    message: ''
+    message: '',
+    isLoading: true
   },
   async loadData() {
+    this.setData({ isLoading: true });
     try {
-      const auth = await getLoggedUserAPI(await havingToken());
+      const auth = await getLoggedUserAPI();
       this.setData({ user: auth.user });
+      this.setData({ isLoading: false });
     } catch (err) {
       handleError(err.message);
+      this.setData({ isLoading: false });
     }
   },
-  onReady() {
-  },
+  onReady() {},
   onShow() {
     this.loadData();
   },
-  onHide() {
-  },
-  onUnload() {
-  },
+  onHide() {},
+  onUnload() {},
   handleDeleteAccount() {
     my.confirm({
       title: 'Bạn muốn xoá tài khoản',
@@ -47,13 +42,13 @@ Page({
       success: async (result) => {
         if (result.confirm) {
           try {
-            await deleteUserAPI(await havingToken());
+            await deleteUserAPI();
             await removeStorage('token');
-            my.alert({ 
+            my.alert({
               title: 'Xoá tài khoản thành công',
               success: () => {
                 my.reLaunch({ url: 'pages/auth/index' });
-              }
+              },
             });
           } catch (err) {
             handleError(err.message);
@@ -63,7 +58,7 @@ Page({
       },
       fail: (e) => {
         my.alert({ title: 'Xoá tài khoản thất bại' });
-      }
+      },
     });
   },
   handleEdit(e) {
@@ -72,76 +67,76 @@ Page({
       this.setData({
         isEdit: false,
         editPassword: false,
-        editValue: {}
+        editValue: {},
       });
     } else {
-      this.setData({ 
+      this.setData({
         isEdit: true,
         editPassword: is,
-        editValue: is ? { 
-          newPass: '', 
-          confirmPass: '', 
-          password: ''
-        } : { 
-          name: this.data.user.name, 
-          age: this.data.user.age, 
-          password: ''
-        }
+        editValue: is
+          ? {
+              newPass: '',
+              confirmPass: '',
+              password: '',
+            }
+          : {
+              name: this.data.user.name,
+              age: this.data.user.age,
+              password: '',
+            },
       });
     }
   },
   handleChange(e) {
-    console.log(e);
     const { key } = e.target.dataset;
     const { editValue } = this.data;
-    this.setData({ 
+    this.setData({
       editValue: {
-        ...editValue, 
-        [key]: e.detail.value 
-      }
+        ...editValue,
+        [key]: e.detail.value,
+      },
     });
   },
   async handleUpdateAccount() {
     const { editPassword, user, editValue } = this.data;
-    console.log(editValue);
     if (editPassword) {
       if (editValue.newPass !== editValue.confirmPass) {
-        this.setData({ message: "Xác nhận mật khẩu thất bại" });
+        this.setData({ message: 'Xác nhận mật khẩu thất bại' });
         return;
       }
-    } 
+    }
 
     const keys = Object.keys(editValue);
-    console.log(keys);
     for (let i in keys) {
       if (!editValue[keys[i]]) {
-        this.setData({ message: "Điền thông tin đầy đủ" });
+        this.setData({ message: 'Điền thông tin đầy đủ' });
         return;
       }
     }
 
-    const data = editPassword ? {
-      newPassword: editValue.newPass,
-      password: editValue.password,
-    } : {
-      name: editValue.name,
-      age: editValue.age,
-      password: editValue.password,
-    }
+    const data = editPassword
+      ? {
+          newPassword: editValue.newPass,
+          password: editValue.password,
+        }
+      : {
+          name: editValue.name,
+          age: editValue.age,
+          password: editValue.password,
+        };
 
     try {
-      const res = await postUpdateUserProfileAPI(await havingToken(data));
-    
+      const res = await postUpdateUserProfileAPI(data);
+
       my.alert({
         title: 'Cập nhật thông tin',
         content: res.message,
         success: () => {
           this.setData({ isEdit: false });
-        }
+        },
       });
-
     } catch (err) {
       handleError(err.message);
     }
-  }
+  },
 });

@@ -1,11 +1,11 @@
 Component({
   data: {
     email: '',
-    password: '',   
+    password: '',
   },
-  props: { 
+  props: {
     onLogin: () => {},
-    message: ''
+    message: '',
   },
   methods: {
     handleLogin() {
@@ -15,6 +15,6 @@ Component({
       const key = e.target.dataset.name;
       const value = e.detail.value;
       this.setData({ [key]: value });
-    }
-  }
+    },
+  },
 });

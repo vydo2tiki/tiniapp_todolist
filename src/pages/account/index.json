@@ -1,7 +1,8 @@
 {
   "defaultTitle": "",
   "usingComponents": {
-    "list-item": "@tiki.vn/tini-ui/es/list/list-item/index"
+    "list-item": "@tiki.vn/tini-ui/es/list/list-item/index",
+    "loading": "components/loading/index"
   },
   "transparentTitle": "always"
 }

@@ -1,8 +1,13 @@
-<view class="task-detail ">
-  <view class="task-detail-contaienr">
-    <view class="task-detail-header">
-      <image tiki:if="{{completed}}"  src="../../assets/images/completed-bg.jpeg" />
-      <image tiki:if="{{!completed}}"  src="../../assets/images/inprocess-bg.jpeg" />
+<view tiki:if={{isLoading}}>
+  <loading />
+</view>
+
+
+<view tiki:else class="task-detail">
+  <view class="task-detail__contaienr">
+    <view class="task-detail__header">
+      <image tiki:if="{{completed}}"  src="/assets/images/completed-bg.jpeg" />
+      <image tiki:if="{{!completed}}"  src="/assets/images/inprocess-bg.jpeg" />
     </view>
 
     
@@ -11,13 +16,13 @@
         {{description}}
       </text>
       <text>
-        {{status}}
+        {{completed ? 'Đã hoàn thành' : 'Đang tiến hành'}}
       </text> 
       <text>Ngày tạo: {{createdAt}}</text>
       <text>Ngày cập nhật: {{updatedAt}}</text>
     </view>
 
-    <view class="task-detail-action">
+    <view class="task-detail__action">
       <button
         onTap="handleInprocess"
         tiki:if="{{completed}}"  

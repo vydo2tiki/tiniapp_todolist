@@ -1,6 +1,6 @@
-<view class="task-section-container">
+<view class="task-section__container">
   <template name="horizontal">
-    <view class="task-section-horizontal">
+    <view class="task-section__horizontal">
       <block tiki:for={{task}}>
         <task-item type={{type}} item="{{item}}" />
       </block>
@@ -16,7 +16,7 @@
   </template>
 
   <template name="vertical">
-    <view class="task-section-vertical">
+    <view class="task-section__vertical">
       <block tiki:for={{task}}>
         <task-item type={{type}} item="{{item}}" />
       </block>

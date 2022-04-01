@@ -1,17 +1,13 @@
 Component({
   data: {
     activeIndex: 0,
-    items: [
-      { title: "Email" },
-      { title: "Thông tin" },
-      {}
-    ],
+    items: [{ title: 'Email' }, { title: 'Thông tin' }, {}],
     email: '',
     name: '',
     age: '',
     password: '',
     confirmPassword: '',
-    message: ''
+    message: '',
   },
   props: {
     onRegister: () => {},
@@ -19,18 +15,21 @@ Component({
   },
   methods: {
     handleRegister(step) {
-      const {email, password, confirmPassword, age, name, activeIndex} = this.data;
+      const { email, password, confirmPassword, age, name, activeIndex } = this.data;
       if (!password || !confirmPassword || !name || !age) {
-        this.setData({ message: 'Điền đầy đủ thông tin' })
+        this.setData({ message: 'Điền đầy đủ thông tin' });
         return 0;
       }
       if (password != confirmPassword) {
-        this.setData({ message: 'Mật khẩu xác nhận không trùng khớp' })
+        this.setData({ message: 'Mật khẩu xác nhận không trùng khớp' });
         return 0;
       }
 
       this.props.onRegister({
-        email, password, name, age
+        email,
+        password,
+        name,
+        age,
       });
 
       this.setData({ activeIndex: activeIndex + 1 });
@@ -56,6 +55,6 @@ Component({
       const key = e.target.dataset.name;
       const value = e.detail.value;
       this.setData({ [key]: value });
-    }
-  }
+    },
+  },
 });

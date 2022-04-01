@@ -1,5 +1,5 @@
 {
-  "component": true, 
+  "component": true,
   "usingComponents": {
     "login-form": "components/login-form/index",
     "register-form": "components/register-form/index"

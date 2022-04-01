@@ -1,8 +1,8 @@
 Component({
-  props: { 
+  props: {
     title: '',
     data: null,
-    onNavigate: () => {}
+    onNavigate: () => {},
   },
 
   didMount() {},
@@ -12,6 +12,6 @@ Component({
   methods: {
     _onNavigate() {
       this.props.onNavigate();
-    }
-  }
+    },
+  },
 });

@@ -1,16 +1,16 @@
 <view>
-  <view class="auth-form-header">
+  <view class="auth-form__header">
     <view 
       onTap="handleOnChange"  
       data-mode="{{true}}"
-      class="auth-form-header-title {{activeLogin ? 'auth-form-header-title-active' : ''}}"
+      class="auth-form__header__title {{activeLogin ? 'auth-form__header__title--active' : ''}}"
     >
       <text>ĐĂNG NHẬP</text>
     </view> 
     <view 
       onTap="handleOnChange" 
       data-mode="{{false}}"
-      class="auth-form-header-title {{!activeLogin ? 'auth-form-header-title-active' : ''}}"
+      class="auth-form__header__title {{!activeLogin ? 'auth-form__header__title--active' : ''}}"
     >
       <text>ĐĂNG KÝ</text>
     </view> 

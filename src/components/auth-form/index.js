@@ -1,17 +1,12 @@
-import {
-  postLoginAPI,
-  postRegisterUserAPI
-} from '../../services/index';
+import { postLoginAPI, postRegisterUserAPI } from '../../services/index';
 
-import {
-  setStorage
-} from '../../utils/storage';
+import { setStorage } from '../../utils/storage';
 
 Component({
   props: {
     activeLogin: true,
     message: '',
-    isSuccess: false
+    isSuccess: null,
   },
   methods: {
     handleOnChange(e) {
@@ -20,30 +15,32 @@ Component({
     async onLogin(email, password) {
       const app = getApp();
       if (email == '' || password == '') {
-        this.setData({ message: "Điền thông tin đăng nhập" });
+        this.setData({ message: 'Điền thông tin đăng nhập' });
       } else {
+        this.setData({ message: 'Đang đăng nhập...' });
         try {
           const res = await postLoginAPI({ email, password });
-          this.setData({ message: "" });
-          const data =  await setStorage("token", res.token);
+          this.setData({ message: '' });
+          const data = await setStorage('token', res.token);
           my.reLaunch({ url: 'pages/home/index' });
         } catch (err) {
-          this.setData({ message: "Email hoặc mật khẩu không chính xác" });
+          this.setData({ message: 'Email hoặc mật khẩu không chính xác' });
         }
       }
     },
     async onRegister(email, password) {
       if (email == '' || password == '') {
-        this.setData({ message: "Điền thông tin đăng nhập" });
+        this.setData({ message: 'Điền thông tin đăng nhập' });
       } else {
+        this.setData({ isSuccess: null });
         try {
           const res = await postRegisterUserAPI({ email, password });
-          const data =  await setStorage("token", res.token);
+          const data = await setStorage('token', res.token);
           this.setData({ isSuccess: true });
         } catch (err) {
           this.setData({ isSuccess: false });
         }
       }
-    }
-  }
+    },
+  },
 });
