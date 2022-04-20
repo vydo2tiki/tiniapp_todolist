@@ -1,4 +1,4 @@
-<view tiki:if={{isLoading}}>
+<!-- <view tiki:if={{isLoading}}>
   <loading />
 </view>
 
@@ -42,4 +42,91 @@
  
 
   <add-button />
+</view> -->
+
+<view class="wrapper">
+  <tooltip class="mt-48" position="top" show theme="reverse">
+   <view slot="content">
+       Top
+   </view>
+   <view slot="operation">Text</view>
+ </tooltip>
+
+ <tooltip class="mt-48" position="top-left" show theme="reverse">
+   <view slot="content">
+       Top Left
+   </view>
+   <view slot="operation">Text</view>
+ </tooltip>
+
+ <tooltip class="mt-48" position="top-right" show theme="reverse">
+   <view slot="content">
+       Top Left
+   </view>
+   <view slot="operation">Text</view>
+ </tooltip>
+
+ <tooltip class="mt-48" position="left" show theme="reverse">
+   <view slot="content">
+       Left
+   </view>
+   <view slot="operation">Text</view>
+ </tooltip>
+
+ <tooltip class="mt-48" position="left-top" show theme="reverse">
+   <view slot="content">
+       Left Top
+   </view>
+   <view slot="operation">Text</view>
+ </tooltip>
+
+ <tooltip class="mt-48" position="left-bottom" show theme="reverse">
+   <view slot="content">
+       Left Bottom
+   </view>
+   <view slot="operation">Text</view>
+ </tooltip>
+
+ <tooltip class="mt-48" position="right" show theme="reverse">
+   <view slot="content">
+       Right
+   </view>
+   <view slot="operation">Text</view>
+ </tooltip>
+
+ <tooltip class="mt-48" position="right-top" show theme="reverse">
+   <view slot="content">
+       Right Top
+   </view>
+   <view slot="operation">Text</view>
+ </tooltip>
+
+ <tooltip class="mt-48" position="right-bottom" show theme="reverse">
+   <view slot="content">
+       Right Top
+   </view>
+   <view slot="operation">Text</view>
+ </tooltip>
+
+ <tooltip class="mt-48" position="bottom" show theme="reverse">
+   <view slot="content">
+       Bottom
+   </view>
+   <view slot="operation">Text</view>
+ </tooltip>
+
+ <tooltip class="mt-48" position="bottom-left" show theme="reverse">
+   <view slot="content">
+       Bottom Left
+   </view>
+   <view slot="operation">Text</view>
+ </tooltip>
+
+ <tooltip class="mt-48" position="bottom-right" show theme="reverse">
+   <view slot="content">
+       Bottom Left
+   </view>
+   <view slot="operation">Text</view>
+ </tooltip>
+ 
 </view>
