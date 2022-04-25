@@ -87,11 +87,11 @@
    <view slot="operation">Text</view>
  </tooltip>
 
- <tooltip class="mt-48" position="right" show theme="reverse">
+ <tooltip class="mt-48" position="left" theme="dark" showCloseIcon show>
    <view slot="content">
        Right
    </view>
-   <view slot="operation">Text</view>
+   <view slot="operation">TooltipText</view>
  </tooltip>
 
  <tooltip class="mt-48" position="right-top" show theme="reverse">
