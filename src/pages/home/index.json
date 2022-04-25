@@ -5,7 +5,8 @@
     "section-title": "components/section-title/index",
     "task-carousel": "components/task-carousel/index",
     "task-section": "components/task-section/index",
-    "loading": "components/loading/index"
+    "loading": "components/loading/index",
+    "tooltip": "@tiki.vn/tini-ui/es/tooltip/index"
   },
   "backgroundColor": "#f8f9fa"
 }
