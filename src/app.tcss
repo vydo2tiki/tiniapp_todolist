@@ -1,5 +1,15 @@
 @import '@tiki.vn/tini-style/es/index.tcss';
 
+.tu-tooltip-content-left {
+  right: 100%;
+  top: 50%;
+  margin-right: 12px;
+}
+.tu-tooltip-content-left-dark {
+  background: var(--gray100);
+  color: #fff;
+}
+
 :root{
   --color-core: #ff9933;
   --color-white: #f8f9fa;
