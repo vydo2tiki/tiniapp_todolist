@@ -28,6 +28,15 @@ jobs:
       - name: Config
         run: git config --global user.name "github action" && git config --global user.email vy.do2@tiki.vn
   
+      - uses: actions/labeler@v2
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Echo
+        run: echo ${{ secrets.GITHUB_TOKEN }}
+
       - name: Push 
         run: git add . && git commit -m "new version" && git push
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
         
