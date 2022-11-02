@@ -1,6 +1,6 @@
 {
   "name": "task-todo-list",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "tiki": {
     "appIdentifier": "task.todolist",
     "buildNumber": 1
