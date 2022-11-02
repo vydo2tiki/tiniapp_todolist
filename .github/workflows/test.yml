@@ -25,18 +25,15 @@ jobs:
       - name: Test
         run: npm version patch --no-git-tag-version
         
-      - name: Push tag
+      - name: Config
         run: git config --global user.name "vydo2tiki" && git config --global user.email vy.do2@tiki.vn
 
       - uses: actions/labeler@v2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          
-      - name: Tag log
-        run: git tag
   
-      - name: Push tag
-        run: git push && git push --tag
+      - name: Push 
+        run: git add . && git commit -m "new version" && git push
         env:
           GITHUB_TOKEN: ${{ github.token }}
         
