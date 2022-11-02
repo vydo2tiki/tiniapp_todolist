@@ -21,6 +21,9 @@ jobs:
 
       - name: Install packages
         run: yarn install
+        
+      - name: Test
+        run: npm version patch && git push && git push --tag
 
       - uses: actions/labeler@v2
         with:
