@@ -24,8 +24,8 @@ jobs:
         run: yarn install
         
       - name: Create local changes
-        run: |
-          ...
+        run: npm version patch --no-git-tag-version
+        
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
